@@ -1,0 +1,28 @@
+@import '../App/vars.less';
+
+.tagName {
+  position: relative;
+  margin: -5px;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input {
+  composes: input from '../TextInput/styles.less';
+}
+
+.item {
+  margin: 5px;
+
+  &.field {
+    flex: 1 1 auto;
+  }
+}
+
+.autosuggestContainer {
+  position: static;
+}
