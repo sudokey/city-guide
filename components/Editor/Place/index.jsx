@@ -21,7 +21,6 @@ class Place extends PureComponent {
     };
   }
 
-
   componentDidMount() {
     // TODO: Add pin to map on click
     this.map = new google.maps.Map(this.mapRef.current, {

@@ -1,0 +1,35 @@
+@import '../App/vars.less';
+
+.labelWrapper {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 32px;
+  border: 1px dashed @greyLight;
+  border-radius: 8px;
+  text-align: left;
+  background: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background: @greyLightMedium;
+  }
+}
+
+.label {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-gap: 8px;
+  color: @greyDarkMedium;
+  fill: @greyDarkMedium;
+  align-items: center;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+}
