@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "start": "npm run clean && parcel index.html",
-    "build": "npm run clean && parcel build index.html"
+    "build": "npm run clean && parcel build index.html",
+    "deploy": "npm build && firebase deploy"
   },
   "keywords": [],
   "author": "",
