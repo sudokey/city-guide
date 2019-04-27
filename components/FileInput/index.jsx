@@ -1,27 +1,37 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import IconImage from '../Icons/Image';
 import styles from './styles.less';
 
-const FileInput = () => {
-  const labelRef = useRef(null);
+const FileInput = ({ children, theme }) => {
+  const inputRef = useRef(null);
 
   return (
-    <div className={styles.input}>
-      <button
-        type="button"
-        className={styles.labelWrapper}
-        onClick={() => {
-          labelRef.current.click();
-        }}
-      >
-        <label htmlFor="file" className={styles.label} ref={labelRef}>
-          <IconImage />
-          Добавьте красивую обложку
-          <input type="file" id="file" />
-        </label>
-      </button>
-    </div>
+    <button
+      type="button"
+      className={classNames({
+        [styles.fileInput]: true,
+        [theme.fileInput]: !!theme.fileInput,
+      })}
+      onClick={() => {
+        inputRef.current.click();
+      }}
+    >
+      {children}
+      <input type="file" ref={inputRef} />
+    </button>
   );
+};
+
+FileInput.propTypes = {
+  children: PropTypes.node.isRequired,
+  theme: PropTypes.shape({
+    fileInput: PropTypes.string,
+  }),
+};
+
+FileInput.defaultProps = {
+  theme: {},
 };
 
 export default FileInput;

@@ -1,0 +1,34 @@
+@import '../../App/vars.less';
+
+.input {
+  .label {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    grid-gap: 8px;
+    padding: 40px;
+    color: @greyDarkMedium;
+    fill: @greyDarkMedium;
+    cursor: pointer;
+  }
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+
+  .fileInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      fill: @greyDarkMedium;
+    }
+  }
+}

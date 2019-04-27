@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles.less';
 import Place from './Place';
+import Cover from './Cover';
 import TextInput from '../TextInput';
 import TagsInput from '../TagsInput';
-import FileInput from '../FileInput';
 
 const Editor = () => (
   <div className={styles.editor}>
@@ -14,14 +14,14 @@ const Editor = () => (
         placeholder="Название места"
       />
     </div>
-    <div className={`${styles.field} ${styles.file}`}>
-      <FileInput />
+    <div className={styles.field}>
+      <Cover />
     </div>
-    <div className={`${styles.field} ${styles.place}`}>
+    <div className={styles.field}>
       {/* TODO: Move place component to root components tree */}
       <Place />
     </div>
-    <div className={`${styles.field} ${styles.tags}`}>
+    <div className={styles.field}>
       <TagsInput />
     </div>
     {/* TODO: Add bottom padding */}
