@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles.less';
 import FileInput from '../../FileInput';
@@ -6,10 +7,9 @@ import IconPlus from '../../Icons/Plus';
 import Item from './Item';
 import Image from './Image';
 
-
-const Cover = () => {
-  return (
-    <div className={styles.cover}>
+const Cover = ({ images, onChange }) => (
+  <div className={styles.cover}>
+    {images.length === 0 ? (
       <div className={styles.input}>
         <FileInput>
           <span className={styles.label}>
@@ -18,34 +18,42 @@ const Cover = () => {
           </span>
         </FileInput>
       </div>
-
+    ) : (
       <div className={styles.images}>
+        {images.map((image, index) => (
+          <Item key={index}>
+            <Image
+              {...image}
+              onClickRemove={() => {
+                const result = [].concat(images);
+                result.splice(index, 1);
+                onChange(result);
+              }}
+            />
+          </Item>
+        ))}
         <Item>
-          <Image src="https://cdn-images-1.medium.com/max/1600/0*j60M-msaVYBg6lc2.jpg" alt="" />
-        </Item>
-        <Item>
-          <Image src="https://cdn-images-1.medium.com/max/1600/0*Gx0m0Uli7Z2Js7uH.jpeg" alt="" />
-        </Item>
-        <Item>
-          <Image src="https://cdn-images-1.medium.com/max/1600/0*MdmMuZ_AYGxjek9B.jpg" alt="" />
-        </Item>
-        <Item>
-          <Image src="https://cdn-images-1.medium.com/max/1600/0*FaEXCNV72KdCnUdm.jpg" alt="" />
-        </Item>
-        <Item>
-          <Image src="https://cdn-images-1.medium.com/max/1600/0*gfKKvpZLM33NSIZX.jpg" alt="" />
-        </Item>
-        <Item>
-          <Image src="https://cdn-images-1.medium.com/max/1600/0*ALDTdFFj-HNHST4F.jpg" alt="" />
-        </Item>
-        <Item>
-          <FileInput theme={{ fileInput: styles.fileInput }}>
+          <FileInput
+            theme={{ fileInput: styles.fileInput }}
+            inputProps={{
+              accept: 'image/x-png,image/gif,image/jpeg',
+            }}
+          >
             <IconPlus />
           </FileInput>
         </Item>
       </div>
-    </div>
-  );
+    )}
+  </div>
+);
+
+Cover.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape(Image.propTypes)),
+  onChange: PropTypes.func.isRequired,
+};
+
+Cover.defaultProps = {
+  images: [],
 };
 
 export default Cover;

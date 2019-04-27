@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import styles from './styles.less';
 
-const FileInput = ({ children, theme }) => {
+const FileInput = ({ children, theme, inputProps }) => {
   const inputRef = useRef(null);
 
   return (
@@ -18,7 +18,11 @@ const FileInput = ({ children, theme }) => {
       }}
     >
       {children}
-      <input type="file" ref={inputRef} />
+      <input
+        {...inputProps}
+        type="file"
+        ref={inputRef}
+      />
     </button>
   );
 };
@@ -28,10 +32,12 @@ FileInput.propTypes = {
   theme: PropTypes.shape({
     fileInput: PropTypes.string,
   }),
+  inputProps: PropTypes.objectOf(PropTypes.any),
 };
 
 FileInput.defaultProps = {
   theme: {},
+  inputProps: {},
 };
 
 export default FileInput;

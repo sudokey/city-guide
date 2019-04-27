@@ -53,14 +53,26 @@
   justify-content: center;
   width: 32px;
   height: 32px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s ease;
+  outline: none;
 
   svg {
     display: block;
     width: 16px;
     height: 16px;
     fill: @greyLight;
+    transition: fill 0.2s ease;
+  }
+
+  &:hover {
+    svg {
+      fill: @greyLightMedium;
+    }
   }
 }
