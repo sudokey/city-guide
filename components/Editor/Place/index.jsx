@@ -29,11 +29,23 @@ class Place extends PureComponent {
       zoomControl: true,
       clickableIcons: false,
       disableDefaultUI: true,
+      keyboardShortcuts: false,
       center: {
         lat: MOSCOW_LAT,
         lng: MOSCOW_LNG,
       },
     });
+
+    /* eslint-disable no-param-reassign */
+    google.maps.event.addListenerOnce(this.map, 'tilesloaded', () => {
+      setTimeout(() => {
+        this.map.getDiv().querySelectorAll('[tabindex], area, button, a, iframe, input')
+          .forEach((el) => {
+            el.tabIndex = -1;
+          });
+      }, 1000);
+    });
+    /* eslint-enable no-param-reassign */
   }
 
   componentWillUnmount() {

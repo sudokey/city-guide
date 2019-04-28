@@ -22,7 +22,6 @@ const Editor = () => {
 
   return (
     <div className={styles.editor}>
-      {/* TODO: Add tabindex for inputs */}
       <div className={`${styles.field} ${styles.name}`}>
         <TextInput
           autoFocus
@@ -36,13 +35,11 @@ const Editor = () => {
         />
       </div>
       <div className={styles.field}>
-        {/* TODO: Move place component to root components tree */}
         <Place />
       </div>
       <div className={styles.field}>
         <TagsInput />
       </div>
-      {/* TODO: Add bottom padding */}
     </div>
 
   );

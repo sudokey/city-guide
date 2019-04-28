@@ -61,18 +61,21 @@
   opacity: 0;
   transition: opacity 0.2s ease;
   outline: none;
+  fill: @greyLightMedium;
+  transition: fill 0.2s ease;
+
+  &:hover {
+    fill: @greyLight;
+  }
+
+  @media (pointer: coarse) {
+    opacity: 1;
+    fill: @greyLight;
+  }
 
   svg {
     display: block;
     width: 16px;
     height: 16px;
-    fill: @greyLight;
-    transition: fill 0.2s ease;
-  }
-
-  &:hover {
-    svg {
-      fill: @greyLightMedium;
-    }
   }
 }
