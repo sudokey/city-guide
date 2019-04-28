@@ -45,7 +45,9 @@ const Cover = ({ images, onChange }) => {
             </Item>
           ))}
           <Item>
+            {/* TODO: Add title attr */}
             <FileInput
+              title="Добавить изображение"
               theme={{ fileInput: styles.fileInput }}
               inputProps={fileInputInputOptions}
             >
