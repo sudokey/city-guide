@@ -1,16 +1,7 @@
 @import '../../App/vars.less';
 
-.input {
-  .label {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    align-items: center;
-    grid-gap: 8px;
-    padding: 40px;
-    color: @greyDarkMedium;
-    fill: @greyDarkMedium;
-    cursor: pointer;
-  }
+.cover {
+  margin: 0 0 183px;
 }
 
 .images {
@@ -18,25 +9,61 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 
+  @media (max-width: 1023px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   @media (max-width: 767px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 767px) and (orientation: landscape) {
-    grid-template-columns: repeat(4, 1fr);
+  @media (max-width: 424px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.fileInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.48);
+  background: rgba(0, 0, 0, 0.2);
+  outline: none;
+  cursor: pointer;
+  color: @greyDarkMedium;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: @blue;
+
+    .icon svg {
+      fill: @blue;
+    }
   }
 
-  .fileInput {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  input {
+    display: none;
+  }
+
+  .icon {
+    margin: 0 0 70px;
 
     svg {
-      width: 48px;
-      height: 48px;
+      width: 86px;
+      height: 86px;
       fill: @greyDarkMedium;
+      transition: fill 0.2s ease;
     }
+  }
+
+  .label {
+    font-size: 26px;
+    font-weight: bold;
   }
 }

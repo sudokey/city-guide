@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.less';
 import Place from './Place';
 import Cover from './Cover';
-import TextInput from '../TextInput';
+import Textarea from '../Textarea';
 import TagsInput from '../TagsInput';
 
 const Editor = () => {
@@ -19,14 +19,18 @@ const Editor = () => {
   }, {
     src: 'https://cdn-images-1.medium.com/max/1600/0*ALDTdFFj-HNHST4F.jpg',
   }]);
+  const [name, setName] = useState('');
 
   return (
-    // TODO: Add tabIndex for inputs
     <div className={styles.editor}>
-      <div className={`${styles.field} ${styles.name} ${styles.text}`}>
-        <TextInput
+      <div className={styles.name}>
+        <Textarea
           autoFocus
           placeholder="Название места"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
         />
       </div>
       <div className={styles.field}>
