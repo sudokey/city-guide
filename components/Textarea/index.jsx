@@ -7,7 +7,9 @@ const Textarea = ({ value, ...rest }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    autosize(textareaRef.current);
+    setTimeout(() => {
+      autosize(textareaRef.current);
+    }, 0);
 
     return () => {
       autosize.destroy(textareaRef.current);
