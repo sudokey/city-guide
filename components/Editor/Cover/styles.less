@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   height: 100%;
   border: none;
@@ -56,33 +56,26 @@
   cursor: pointer;
   color: @greyDarkMedium;
   transition: color 0.2s ease;
+  font-size: 26px;
+  font-weight: bold;
 
   &:hover,
   &:focus {
     color: @blue;
 
-    .icon svg {
+    svg {
       fill: @blue;
     }
   }
 
+  svg {
+    width: 86px;
+    height: 86px;
+    fill: @greyDarkMedium;
+    transition: fill 0.2s ease;
+  }
+
   input {
     display: none;
-  }
-
-  .icon {
-    margin: 0 0 70px;
-
-    svg {
-      width: 86px;
-      height: 86px;
-      fill: @greyDarkMedium;
-      transition: fill 0.2s ease;
-    }
-  }
-
-  .label {
-    font-size: 26px;
-    font-weight: bold;
   }
 }

@@ -50,14 +50,10 @@ const Cover = ({ images, onChange }) => {
               },
             }}
           >
-            <span className={styles.icon}>
-              <IconPlus />
-            </span>
-            <span className={styles.label}>
-              Добавьте
-              <br />
-              фотографии
-            </span>
+            <IconPlus />
+            Добавьте
+            <br />
+            фотографии
           </FileInput>
         </div>
       </div>
