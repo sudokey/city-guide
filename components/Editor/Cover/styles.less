@@ -24,7 +24,12 @@
 
 .item {
   position: relative;
-  padding-top: 123.7%;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-top: 123.7%;
+  }
 }
 
 .content {

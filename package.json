@@ -31,6 +31,7 @@
     "values": "^0.2.0"
   },
   "dependencies": {
+    "array-move": "^2.1.0",
     "autosize": "^4.0.2",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
@@ -41,6 +42,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-router5": "^7.1.0",
+    "react-sortable-hoc": "^1.9.1",
     "react-tagsinput": "^3.19.0"
   }
 }
