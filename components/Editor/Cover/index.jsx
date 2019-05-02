@@ -8,6 +8,8 @@ import FileInput from '../../FileInput';
 import IconPlus from '../../Icons/Plus';
 import Image from './Image';
 
+// TODO: Transition on remove and add images
+// TODO: Fix responsive
 const Cover = ({ images, onChange }) => {
   const SortableImageItem = SortableElement(({ image, index }) => (
     <div className={styles.item}>
