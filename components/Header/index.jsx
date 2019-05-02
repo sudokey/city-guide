@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import styles from './styles.less';
 
-const Header = ({ main, side, shadow }) => (
+const Header = ({ main, side }) => (
   <div className={styles.header}>
     <div className={styles.inner}>
       <div className={styles.section}>
@@ -16,20 +16,17 @@ const Header = ({ main, side, shadow }) => (
         ))}
       </div>
     </div>
-    {shadow && <div className={styles.shadow} />}
   </div>
 );
 
 Header.propTypes = {
   main: PropTypes.arrayOf(PropTypes.node),
   side: PropTypes.arrayOf(PropTypes.node),
-  shadow: PropTypes.bool,
 };
 
 Header.defaultProps = {
   main: [],
   side: [],
-  shadow: true,
 };
 
 export default Header;

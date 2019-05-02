@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles.less';
 
-const Button = ({ children, type, green }) => (
+const Button = ({ children, green, ...rest }) => (
   <button
-    type={type}
+    {...rest}
     className={classnames({
       [styles.button]: true,
       [styles.green]: green,

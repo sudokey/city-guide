@@ -21,8 +21,9 @@ const Editor = () => {
   }]);
 
   return (
+    // TODO: Add tabIndex for inputs
     <div className={styles.editor}>
-      <div className={`${styles.field} ${styles.name}`}>
+      <div className={`${styles.field} ${styles.name} ${styles.text}`}>
         <TextInput
           autoFocus
           placeholder="Название места"
@@ -37,7 +38,7 @@ const Editor = () => {
       <div className={styles.field}>
         <Place />
       </div>
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.text}`}>
         <TagsInput />
       </div>
     </div>

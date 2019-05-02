@@ -19,6 +19,7 @@ const Cover = ({ images, onChange }) => {
     },
   };
 
+  // TODO: Add trasition for items
   return (
     <div className={styles.cover}>
       {images.length === 0 ? (

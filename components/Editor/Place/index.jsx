@@ -36,9 +36,14 @@ class Place extends PureComponent {
       },
     });
 
+    // TODO: Replace this with positive tabIndex for inputs
     /* eslint-disable no-param-reassign */
     google.maps.event.addListenerOnce(this.map, 'tilesloaded', () => {
       setTimeout(() => {
+        if (!this.map) {
+          return;
+        }
+
         this.map.getDiv().querySelectorAll('[tabindex], area, button, a, iframe, input')
           .forEach((el) => {
             el.tabIndex = -1;

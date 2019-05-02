@@ -1,3 +1,4 @@
 # Todo
 - [ ] Add host to google maps api settings
-- [ ] Add localization
+- [ ] Add cloudfare cdn
+- [+] Add minification for production build

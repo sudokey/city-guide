@@ -17,14 +17,23 @@ const PagePostCreate = () => (
           <span className={styles.status}>Сохранено</span>,
         ]}
         side={[
-          <Button green>Опубликовать</Button>,
+          <Button green>
+            Опубликовать
+          </Button>,
           <UserPick />,
         ]}
       />
     )}
     content={(
-      <div className={styles.content}>
-        <Editor />
+      <div className={styles.wrapper}>
+        <div className={styles.shadows}>
+          <span className={`${styles.corner} ${styles.left}`} />
+          <span className={`${styles.corner} ${styles.right}`} />
+          <span className={styles.top} />
+        </div>
+        <div className={styles.content}>
+          <Editor />
+        </div>
       </div>
     )}
   />
