@@ -1,6 +1,8 @@
 @import '../App/vars.less';
 
 .tag {
+  display: inline-block;
+  vertical-align: middle;
   position: relative;
   height: 34px;
   line-height: 34px;
@@ -10,30 +12,57 @@
   border-radius: 21px;
   color: @blackMedium;
   background: @greyLightMedium;
+  transition: background 0.2s ease, color 0.2s ease;
 
-  &.withRemve {
-    padding-right: 34px;
+  &.blue {
+    background: @blue;
+    color: #fff;
+
+    .remove {
+      fill: @greyLight;
+    }
+
+    .icon {
+      fill: #fff;
+    }
   }
 }
 
+.inner {
+  display: flex;
+  align-items: center;
+}
+
 .remove {
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 34px;
   height: 34px;
   padding: 0;
+  margin: 0 -14px 0 0;
   border: none;
   outline: none;
   background: transparent;
   cursor: pointer;
+  fill: @blackMedium;
+  transition: fill 0.2s ease;
 
   svg {
-    width: 16px;
-    height: 16px;
-    fill: @greyDarkMedium;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.icon {
+  margin: 0 2px 0 -4px;
+  line-height: 1;
+  fill: @blackMedium;
+  transition: fill 0.2s ease;
+
+  svg {
+    vertical-align: top;
+    width: 22px;
+    height: 22px;
   }
 }

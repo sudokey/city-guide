@@ -20,12 +20,20 @@ const Editor = () => {
     src: 'https://cdn-images-1.medium.com/max/1600/0*ALDTdFFj-HNHST4F.jpg',
   }]);
   const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [tags, setTags] = useState([{
+    name: 'Галереи',
+  }, {
+    name: 'Жопка',
+  }]);
 
   return (
     <div className={styles.editor}>
       <div className={styles.name}>
+        {/* TODO: Max length */}
+        {/* TODO: Enable autoFocus */}
         <Textarea
-          autoFocus
+          // autoFocus
           placeholder="Название места"
           value={name}
           onChange={(e) => {
@@ -39,14 +47,26 @@ const Editor = () => {
           onChange={result => setImages(result)}
         />
       </div>
-      <div className={styles.field}>
+      <div className={styles.place}>
         <Place />
       </div>
-      <div className={`${styles.field} ${styles.text}`}>
-        <TagsInput />
+      <div className={styles.tags}>
+        <TagsInput
+          tags={tags}
+          onChange={result => setTags(result)}
+        />
+      </div>
+      <div className={styles.description}>
+        {/* TODO: Max length */}
+        <Textarea
+          placeholder="Добавьте описание места..."
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
       </div>
     </div>
-
   );
 };
 

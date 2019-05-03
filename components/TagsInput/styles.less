@@ -1,29 +1,15 @@
 @import '../App/vars.less';
 
-.tagName {
-  position: relative;
-  margin: -4px;
-}
+.autosuggest {
+  margin: 0 0 18px;
+  color: @greyDarkMedium;
 
-.layout {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.input {
-  composes: input from '../TextInput/styles.less';
-  line-height: 34px;
-}
-
-.item {
-  margin: 4px;
-
-  &.field {
-    flex: 1 1 auto;
+  .input {
+    font-weight: bold;
+    font-size: 36px;
   }
-}
 
-.autosuggestContainer {
-  position: static;
+  .item {
+    margin: 18px 0;
+  }
 }

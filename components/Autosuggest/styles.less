@@ -1,27 +1,39 @@
 @import '../App/vars.less';
+@import '../TextInput/styles.less';
 
 .container {
   position: relative;
+  margin: 0 -32px;
 }
 
 .containerOpen {
   z-index: 1;
+
+  .input {
+    background: #363636;
+  }
+
+  .suggestionsContainer {
+    display: block;
+  }
 }
 
 .input {
   composes: input from '../TextInput/styles.less';
+  border-radius: 14px 14px 0 0;
+  padding: 14px 32px;
 }
 
 .suggestionsContainer {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
+  box-sizing: border-box;
   width: 100%;
-  margin: 6px 0 0;
-  font-size: 14px;
-  box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1), 0 0px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background: #fff;
+  padding: 0 32px;
+  border-radius: 0 0 14px 14px;
+  background: #303030;
 }
 
 .suggestionsList {
@@ -31,22 +43,5 @@
 }
 
 .suggestion {
-  padding: 10px;
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease;
-}
-
-.suggestionHighlighted {
-  background: @greyLightMedium;
-  color: @green;
-
-  &:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
 }

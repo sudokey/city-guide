@@ -1,6 +1,6 @@
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import { pick } from 'lodash';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles.less';
@@ -35,6 +35,7 @@ const Cover = ({ images, onChange }) => {
           image={image}
         />
       ))}
+
       <div className={styles.item}>
         <div className={styles.content}>
           <FileInput
@@ -67,7 +68,7 @@ const Cover = ({ images, onChange }) => {
       <SortableImageList
         axis="xy"
         list={images}
-        shouldCancelStart={e => e.target.tagName === 'BUTTON'}
+        shouldCancelStart={e => e.target.tagName.toLowerCase() === 'button'}
         onSortEnd={({ oldIndex, newIndex }) => {
           const result = arrayMove(images, oldIndex, newIndex);
           onChange(result);
