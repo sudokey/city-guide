@@ -47,6 +47,8 @@ const TagsInput = ({ tags, onChange }) => {
           }}
           onSuggestionSelected={(e, { suggestion }) => {
             // TODO: Create tag on enter
+            // TODO: Create only unique tags
+            // TODO: Disable create new tag when api create new tag
             let tag;
             if (suggestion.type === 'new') {
               // TODO: Create tag api call
@@ -84,6 +86,7 @@ const TagsInput = ({ tags, onChange }) => {
         />
       </div>
 
+      {/* TODO: Add remove tag by click */}
       <Tags blue tags={tags} />
     </div>
   );

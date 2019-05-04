@@ -31,9 +31,8 @@ const Editor = () => {
     <div className={styles.editor}>
       <div className={styles.name}>
         {/* TODO: Max length */}
-        {/* TODO: Enable autoFocus */}
         <Textarea
-          // autoFocus
+          autoFocus
           placeholder="Название места"
           value={name}
           onChange={(e) => {
