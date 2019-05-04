@@ -7,7 +7,7 @@
     "clean": "rm -rf ./dist",
     "start": "npm run clean && parcel index.html",
     "build": "npm run clean && parcel build index.html --no-source-maps",
-    "deploy": "npm build && firebase deploy"
+    "deploy": "npm run build && firebase deploy"
   },
   "keywords": [],
   "author": "",
