@@ -1,9 +1,18 @@
 @import '../App/vars.less';
 @import '../TextInput/styles.less';
 
+.input {
+  composes: input from '../TextInput/styles.less';
+}
+
 .container {
   position: relative;
   margin: 0 -32px;
+
+  .input {
+    border-radius: 14px 14px 0 0;
+    padding: 14px 32px;
+  }
 }
 
 .containerOpen {
@@ -16,12 +25,6 @@
   .suggestionsContainer {
     display: block;
   }
-}
-
-.input {
-  composes: input from '../TextInput/styles.less';
-  border-radius: 14px 14px 0 0;
-  padding: 14px 32px;
 }
 
 .suggestionsContainer {

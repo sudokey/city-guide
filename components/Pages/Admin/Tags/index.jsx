@@ -4,9 +4,9 @@ import Header from '../../../Header';
 import Logo from '../../../Logo';
 import UserPick from '../../../UserPick';
 import ContentCreator from '../../../ContentCreator';
-import Button from '../../../Button';
 import Tags from '../../../Tags';
 import styles from '../styles.less';
+import Routes from '../../../../utils/routes';
 
 const PagePostCreate = () => (
   <Layout
@@ -16,9 +16,6 @@ const PagePostCreate = () => (
           <Logo />,
         ]}
         side={[
-          <Button green>
-            Опубликовать
-          </Button>,
           <UserPick />,
         ]}
       />
@@ -46,11 +43,11 @@ const PagePostCreate = () => (
             tags={[{
               name: 'Ритейл',
               blue: true,
-              url: '/',
+              url: Routes.getAdminTagsCreateUrl(),
             }, {
               name: 'Еда и напитки',
               blue: true,
-              url: '/',
+              url: Routes.getAdminTagsCreateUrl(),
             }]}
           />
         </div>

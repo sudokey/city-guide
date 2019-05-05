@@ -7,11 +7,15 @@ export default class Routes {
     return '/posts/create';
   }
 
-  static getAdminRoute() {
+  static getAdminUrl() {
     return '/admin';
   }
 
-  static getAdminTagsRoute() {
-    return `${Routes.getAdminRoute()}/tags`;
+  static getAdminTagsUrl() {
+    return `${Routes.getAdminUrl()}/tags`;
+  }
+
+  static getAdminTagsCreateUrl() {
+    return `${Routes.getAdminTagsUrl()}/create`;
   }
 }

@@ -5,7 +5,7 @@ import Logo from '../../../Logo';
 import UserPick from '../../../UserPick';
 import Button from '../../../Button';
 import styles from '../styles.less';
-import Editor from '../../../Editor';
+import PostEditor from '../../../PostEditor';
 import ContentCreator from '../../../ContentCreator';
 
 const PagePostCreate = () => (
@@ -27,7 +27,7 @@ const PagePostCreate = () => (
     )}
     content={(
       <ContentCreator>
-        <Editor />
+        <PostEditor />
       </ContentCreator>
     )}
   />
