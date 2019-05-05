@@ -6,6 +6,7 @@ export default class {
       return [];
     }
 
+    // TODO: Api search mathes, not only first word
     return config.tags.filter(tag => tag.name.toLowerCase().indexOf(query.toLowerCase()) === 0);
   }
 }

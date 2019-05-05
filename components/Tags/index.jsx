@@ -3,14 +3,11 @@ import React from 'react';
 import Tag from '../Tag';
 import styles from './styles.less';
 
-const Tags = ({ tags, blue }) => (
+const Tags = ({ tags }) => (
   <div className={styles.tags}>
     {tags.map((tag, index) => (
       <div className={styles.item} key={index}>
-        <Tag
-          {...tag}
-          blue={blue}
-        />
+        <Tag {...tag} />
       </div>
     ))}
   </div>
@@ -18,12 +15,10 @@ const Tags = ({ tags, blue }) => (
 
 Tags.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.shape(Tag.propTypes)),
-  blue: PropTypes.bool,
 };
 
 Tags.defaultProps = {
   tags: [],
-  blue: false,
 };
 
 export default Tags;

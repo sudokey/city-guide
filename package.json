@@ -12,6 +12,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "config": {
+    "firebase": {
+      "apiKey": "AIzaSyCerbhtwCaQSxtvOYtd4VGpUCwVAtFdvB0",
+      "authDomain": "city-guide-f002c.firebaseapp.com",
+      "projectId": "city-guide-f002c"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-transform-runtime": "^7.4.3",
@@ -34,6 +41,7 @@
     "array-move": "^2.1.0",
     "autosize": "^4.0.2",
     "classnames": "^2.2.6",
+    "firebase": "^5.11.1",
     "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",

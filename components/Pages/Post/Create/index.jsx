@@ -6,6 +6,7 @@ import UserPick from '../../../UserPick';
 import Button from '../../../Button';
 import styles from '../styles.less';
 import Editor from '../../../Editor';
+import ContentCreator from '../../../ContentCreator';
 
 const PagePostCreate = () => (
   <Layout
@@ -25,16 +26,9 @@ const PagePostCreate = () => (
       />
     )}
     content={(
-      <div className={styles.wrapper}>
-        <div className={styles.shadows}>
-          <span className={`${styles.corner} ${styles.left}`} />
-          <span className={`${styles.corner} ${styles.right}`} />
-          <span className={styles.top} />
-        </div>
-        <div className={styles.content}>
-          <Editor />
-        </div>
-      </div>
+      <ContentCreator>
+        <Editor />
+      </ContentCreator>
     )}
   />
 );

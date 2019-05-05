@@ -21,14 +21,10 @@ const Editor = () => {
   }]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [tags, setTags] = useState([{
-    name: 'Галереи',
-  }, {
-    name: 'Жопка',
-  }]);
+  const [tags, setTags] = useState([]);
 
   return (
-    <div className={styles.editor}>
+    <>
       <div className={styles.name}>
         {/* TODO: Max length */}
         <Textarea
@@ -53,6 +49,11 @@ const Editor = () => {
         <TagsInput
           tags={tags}
           onChange={result => setTags(result)}
+          defaultTags={[{
+            name: 'Галереи',
+          }, {
+            name: 'Жопка',
+          }]}
         />
       </div>
       <div className={styles.description}>
@@ -65,7 +66,7 @@ const Editor = () => {
           }}
         />
       </div>
-    </div>
+    </>
   );
 };
 
