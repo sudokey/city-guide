@@ -2,11 +2,11 @@ import React from 'react';
 import Layout from '../../../Layout';
 import Header from '../../../Header';
 import Logo from '../../../Logo';
-import UserPick from '../../../UserPick';
 import Button from '../../../Button';
 import styles from '../styles.less';
 import PostEditor from '../../../PostEditor';
 import ContentCreator from '../../../ContentCreator';
+import UserPickOrAuth from '../../../UserPickOrAuth';
 
 const PagePostCreate = () => (
   <Layout
@@ -18,10 +18,8 @@ const PagePostCreate = () => (
           <span className={styles.status}>Сохранено</span>,
         ]}
         side={[
-          <Button green>
-            Опубликовать
-          </Button>,
-          <UserPick />,
+          <Button green>Опубликовать</Button>,
+          <UserPickOrAuth />,
         ]}
       />
     )}

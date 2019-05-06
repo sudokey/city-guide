@@ -11,5 +11,5 @@ firebase.initializeApp(config.firebase);
 
 ReactDOM.render(
   <App />,
-  document.getElementById('app'),
+  document.getElementById('app-root'),
 );
