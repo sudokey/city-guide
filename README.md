@@ -3,5 +3,6 @@
 - [ ] Add host to google maps api settings
 - [ ] Add cloudfare cdn
 - [+] Add minification for production build
+- [ ] Fix static version (html cache problem)
 - [ ] Add ssr
-- [ ] Remove tags.json
+- [ ] Add facebook app for auth

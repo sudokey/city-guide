@@ -3,8 +3,10 @@ import React from 'react';
 import styles from './styles.less';
 import IconUserPick from '../Icons/UserPick';
 
+// TODO: Add lint tag
 const UserPick = ({ src, alt, size }) => (
   <div
+    title={alt}
     className={styles.userPick}
     style={{
       width: size ? `${size}px` : undefined,
@@ -14,7 +16,7 @@ const UserPick = ({ src, alt, size }) => (
     {src ? (
       <img src={src} alt={alt} />
     ) : (
-      <IconUserPick title={alt} />
+      <IconUserPick />
     )}
   </div>
 );

@@ -7,6 +7,7 @@ import Tags from '../Tags';
 import { Api } from '../../utils';
 import IconPlus from '../Icons/Plus';
 
+// TODO: Set line-height
 // TODO: Max length
 const TagsInput = ({ tags, defaultTags, onChange }) => {
   const [query, setQuery] = useState('');

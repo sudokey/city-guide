@@ -10,6 +10,7 @@ import Image from './Image';
 
 // TODO: Transition on remove and add images
 // TODO: Fix responsive
+// TODO: Disable select text on move (safari bug)
 const Cover = ({ images, onChange }) => {
   const SortableImageItem = SortableElement(({ image, index }) => (
     <div className={styles.item}>

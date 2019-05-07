@@ -7,6 +7,7 @@ import appStyles from '../App/styles.less';
 const appRoot = document.getElementById('app-root');
 const popupRoot = document.getElementById('popup-root');
 
+// TODO: Add esc key to close popup
 class Popup extends PureComponent {
   constructor(props) {
     super(props);

@@ -9,12 +9,18 @@
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08), 0 0 4px 0 rgba(0, 0, 0, 0.16);
   border-radius: 14px;
   text-align: center;
+  background: #fff;
 }
 
 .close {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   margin: 0;
   padding: 0;
   border: none;
@@ -22,9 +28,15 @@
   fill: @greyLight;
   cursor: pointer;
   outline: none;
+  transition: fill 0.2s ease;
 
   svg {
     display: block;
+  }
+
+  &:hover,
+  &:focus {
+    fill: @greyLightMedium;
   }
 }
 
@@ -55,4 +67,34 @@
   margin: 0;
   font-size: 14px;
   color: @greyLight;
+}
+
+.button {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  margin: 10px 0;
+  border: none;
+  text-align: center;
+  border-radius: 56px;
+  outline: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
+  }
+
+  &.facebook {
+    background: #007bfe;
+  }
+
+  &.google {
+    background: #dc4e41;
+  }
 }

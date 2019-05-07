@@ -1,11 +1,13 @@
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Popup from '../Popup';
 import styles from './styles.less';
 import Logo from '../Logo';
 import IconCloseCircle from '../Icons/CloseCircle';
+import * as userActions from '../../actions/user';
 
-const AuthPopup = ({ children }) => {
+const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
   const [authVisible, setAuthVisible] = useState(false);
 
   return (
@@ -23,7 +25,9 @@ const AuthPopup = ({ children }) => {
           <div className={styles.auth}>
             <button
               className={styles.close}
-              onClick={() => setAuthVisible(false)}
+              onClick={() => {
+                setAuthVisible(false);
+              }}
             >
               <IconCloseCircle />
             </button>
@@ -33,8 +37,18 @@ const AuthPopup = ({ children }) => {
             <h2 className={styles.title}>Добро пожаловать в&nbsp;City Guide</h2>
             <p className={styles.description}>Социальная сеть для путешественников</p>
             <div className={styles.actions}>
-              <button className={`${styles.button} ${styles.facebook}`}>Facebook</button>
-              <button className={`${styles.button} ${styles.google}`}>Google</button>
+              <button
+                className={`${styles.button} ${styles.facebook}`}
+                onClick={authWithFacebook}
+              >
+                Facebook
+              </button>
+              <button
+                className={`${styles.button} ${styles.google}`}
+                onClick={authWithGoogle}
+              >
+                Google
+              </button>
             </div>
             <p className={styles.terms}>Зарегистрировавшись или нет, вы соглашаетесь с Правилами сервиса</p>
           </div>
@@ -44,8 +58,10 @@ const AuthPopup = ({ children }) => {
   );
 };
 
-AuthPopup.propTypes = {
+Auth.propTypes = {
   children: PropTypes.func.isRequired,
+  authWithGoogle: PropTypes.func.isRequired,
+  authWithFacebook: PropTypes.func.isRequired,
 };
 
-export default AuthPopup;
+export default connect(null, userActions)(Auth);
