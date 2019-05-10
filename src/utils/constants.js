@@ -1,7 +1,7 @@
 export const TAG_TYPE_DEFAULT = 1;
 export const TAG_TYPE_ARCHITECT = 2;
 
-export const USER_SET_DATA = 'USER_SET_DATA';
-export const USER_UNSET_DATA = 'USER_UNSET_DATA';
+export const USER_PROPS = ['uid', 'displayName', 'photoURL'];
 
-export const USER_PROP_NAMES = ['uid', 'displayName', 'photoURL'];
+export const AUTH_SET_DATA = 'AUTH_SET_DATA';
+export const USERS_ADD = 'USERS_ADD';

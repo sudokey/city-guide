@@ -1,24 +1,34 @@
 import { pick } from 'lodash';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { USER_SET_DATA, USER_UNSET_DATA, USER_PROP_NAMES } from '../utils/constants';
+import { AUTH_SET_DATA, USER_PROPS } from '../utils/constants';
+import * as usersActions from './users';
 
 export const setData = data => ({
-  type: USER_SET_DATA,
+  type: AUTH_SET_DATA,
   data,
 });
 
-export const unsetData = () => ({
-  type: USER_UNSET_DATA,
-});
-
 export const startAuthStateChangeListener = () => (dispatch) => {
+  dispatch(setData({
+    loading: true,
+  }));
+
   firebase.auth().onAuthStateChanged((user) => {
+    let userUid;
+
     if (user) {
-      dispatch(setData(pick(user, USER_PROP_NAMES)));
+      const userData = pick(user, USER_PROPS);
+      userUid = userData.uid;
+      dispatch(usersActions.add(userData));
     } else {
-      dispatch(unsetData());
+      userUid = null;
     }
+
+    dispatch(setData({
+      userUid,
+      loading: false,
+    }));
   });
 };
 
@@ -40,11 +50,10 @@ export const authWithFacebook = () => async () => {
   }
 };
 
-export const signOut = () => async (dispatch) => {
+export const signOut = () => async () => {
   try {
     // TODO: Show loader
     await firebase.auth().signOut();
-    dispatch(unsetData());
   } catch (e) {
     // TODO: Show notification
   }

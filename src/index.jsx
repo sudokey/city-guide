@@ -9,8 +9,7 @@ import * as firebase from 'firebase/app';
 import App from './components/App';
 import rootReducer from './reducers';
 import { config } from '../package.json';
-import * as userActions from './actions/user';
-
+import * as authActions from './actions/auth';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -22,6 +21,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app-root'),
   () => {
-    store.dispatch(userActions.startAuthStateChangeListener());
+    store.dispatch(authActions.startAuthStateChangeListener());
   },
 );

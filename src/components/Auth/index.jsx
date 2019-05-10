@@ -5,7 +5,7 @@ import Popup from '../Popup';
 import styles from './styles.less';
 import Logo from '../Logo';
 import IconCloseCircle from '../Icons/CloseCircle';
-import * as userActions from '../../actions/user';
+import * as authActions from '../../actions/auth';
 
 const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
   const [authVisible, setAuthVisible] = useState(false);
@@ -64,4 +64,4 @@ Auth.propTypes = {
   authWithFacebook: PropTypes.func.isRequired,
 };
 
-export default connect(null, userActions)(Auth);
+export default connect(null, authActions)(Auth);

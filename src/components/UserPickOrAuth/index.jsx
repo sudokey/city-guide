@@ -4,34 +4,38 @@ import React from 'react';
 import UserPick from '../UserPick';
 import Button from '../Button';
 import Auth from '../Auth';
-import * as userActions from '../../actions/user';
+import * as authActions from '../../actions/auth';
 
-const UserPickOrAuth = ({ user, signOut }) => (
+const UserPickOrAuth = ({ user, signOut, authLoaing }) => (
   <>
-    {user.uid ? (
+    {!authLoaing && (
       <>
-        <Button
-          green
-          onClick={signOut}
-        >
-          Выйти
-        </Button>
-        <UserPick
-          src={user.photoURL}
-          alt={user.displayName}
-        />
-      </>
-    ) : (
-      <Auth>
-        {showPopup => (
-          <Button
-            green
-            onClick={showPopup}
-          >
-            Войти
-          </Button>
+        {user ? (
+          <>
+            <Button
+              green
+              onClick={signOut}
+            >
+              Выйти
+            </Button>
+            <UserPick
+              src={user.photoURL}
+              alt={user.displayName}
+            />
+          </>
+        ) : (
+          <Auth>
+            {showPopup => (
+              <Button
+                green
+                onClick={showPopup}
+              >
+                Войти
+              </Button>
+            )}
+          </Auth>
         )}
-      </Auth>
+      </>
     )}
   </>
 );
@@ -43,12 +47,14 @@ UserPickOrAuth.propTypes = {
     displayName: PropTypes.string,
   }),
   signOut: PropTypes.func.isRequired,
+  authLoaing: PropTypes.bool.isRequired,
 };
 
 UserPickOrAuth.defaultProps = {
-  user: {},
+  user: undefined,
 };
 
 export default connect(state => ({
-  user: state.user,
-}), userActions)(UserPickOrAuth);
+  user: state.users[state.auth.userUid],
+  authLoaing: state.auth.loading,
+}), authActions)(UserPickOrAuth);
