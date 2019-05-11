@@ -11,11 +11,11 @@ export default class Routes {
     return '/admin';
   }
 
-  static getAdminTagsUrl() {
-    return `${Routes.getAdminUrl()}/tags`;
+  static getAdminCategoriesUrl() {
+    return `${Routes.getAdminUrl()}/categories`;
   }
 
-  static getAdminTagsCreateUrl() {
-    return `${Routes.getAdminTagsUrl()}/create`;
+  static getAdminCategoriesCreateUrl() {
+    return `${Routes.getAdminCategoriesUrl()}/create`;
   }
 }

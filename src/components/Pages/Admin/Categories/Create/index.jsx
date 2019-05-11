@@ -2,10 +2,10 @@ import React from 'react';
 import Layout from '../../../../Layout';
 import Header from '../../../../Header';
 import Logo from '../../../../Logo';
-import UserPick from '../../../../UserPick';
+import UserPickOrAuth from '../../../../UserPickOrAuth';
 import ContentCreator from '../../../../ContentCreator';
 import Button from '../../../../Button';
-import TagEditor from '../../../../TagEditor';
+import CategoryEditor from '../../../../CategoryEditor';
 
 const PagePostCreate = () => (
   <Layout
@@ -16,13 +16,13 @@ const PagePostCreate = () => (
         ]}
         side={[
           <Button green>Опубликовать</Button>,
-          <UserPick />,
+          <UserPickOrAuth />,
         ]}
       />
     )}
     content={(
       <ContentCreator>
-        <TagEditor />
+        <CategoryEditor />
       </ContentCreator>
     )}
   />
