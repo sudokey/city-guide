@@ -1,4 +1,4 @@
-import { AUTH_SET_DATA } from '../utils/constants';
+import { AUTH_SET_DATA } from '../libs/constants';
 
 export default (
   state = {

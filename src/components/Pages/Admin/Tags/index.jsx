@@ -6,7 +6,7 @@ import UserPick from '../../../UserPick';
 import ContentCreator from '../../../ContentCreator';
 import Tags from '../../../Tags';
 import styles from '../styles.less';
-import Routes from '../../../../utils/routes';
+import Routes from '../../../../libs/routes';
 
 const PagePostCreate = () => (
   <Layout

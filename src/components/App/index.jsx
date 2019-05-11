@@ -1,11 +1,11 @@
-import './styles.less';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React from 'react';
 import PageHome from '../Pages/Home';
 import PagePostCreate from '../Pages/Post/Create';
 import PageAdminTags from '../Pages/Admin/Tags';
 import PageAdminTagsCreate from '../Pages/Admin/Tags/Create';
-import { Routes } from '../../utils';
+import { Routes } from '../../libs';
+import './styles.less';
 
 const App = () => (
   <>

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import styles from './styles.less';
-import { Routes } from '../../utils';
+import { Routes } from '../../libs';
 
 const Logo = ({ asLink, size }) => {
   const Tag = asLink ? Link : 'span';

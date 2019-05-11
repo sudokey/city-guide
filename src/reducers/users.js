@@ -1,4 +1,4 @@
-import { USERS_ADD } from '../utils/constants';
+import { USERS_ADD } from '../libs/constants';
 
 export default (
   state = {},

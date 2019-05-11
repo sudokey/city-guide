@@ -1,8 +1,9 @@
 import { pick } from 'lodash';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { AUTH_SET_DATA, USER_PROPS } from '../utils/constants';
+import { AUTH_SET_DATA, USER_PROPS } from '../libs/constants';
 import * as usersActions from './users';
+import { loader } from '../libs/Loader';
 
 export const setData = data => ({
   type: AUTH_SET_DATA,
@@ -10,6 +11,7 @@ export const setData = data => ({
 });
 
 export const startAuthStateChangeListener = () => (dispatch) => {
+  loader.start();
   dispatch(setData({
     loading: true,
   }));
@@ -25,6 +27,7 @@ export const startAuthStateChangeListener = () => (dispatch) => {
       userUid = null;
     }
 
+    loader.done();
     dispatch(setData({
       userUid,
       loading: false,

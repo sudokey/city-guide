@@ -4,7 +4,7 @@ import Autosuggest from '../Autosuggest';
 import styles from './styles.less';
 import Tag from '../Tag';
 import Tags from '../Tags';
-import { Api } from '../../utils';
+import { Api } from '../../libs';
 import IconPlus from '../Icons/Plus';
 
 // TODO: Set line-height
