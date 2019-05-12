@@ -1,19 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles.less';
-import IconCloseCircle from '../../../Icons/CloseCircle';
+import IconRemove from '../../../IconRemove';
 
 const Image = ({ src, alt, onClickRemove }) => (
   <div className={styles.image}>
-    <button
-      tabIndex="-1"
-      type="button"
-      className={styles.remove}
-      title="Удалить"
-      onClick={onClickRemove}
-    >
-      <IconCloseCircle />
-    </button>
+    <div className={styles.remove}>
+      <IconRemove onClick={onClickRemove} />
+    </div>
     <img src={src} alt={alt} />
   </div>
 );

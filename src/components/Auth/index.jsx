@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Popup from '../Popup';
 import styles from './styles.less';
 import Logo from '../Logo';
-import IconCloseCircle from '../Icons/CloseCircle';
 import * as authActions from '../../actions/auth';
+import IconRemove from '../IconRemove';
 
 const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
   const [authVisible, setAuthVisible] = useState(false);
@@ -23,14 +23,15 @@ const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
           }}
         >
           <div className={styles.auth}>
-            <button
-              className={styles.close}
-              onClick={() => {
-                setAuthVisible(false);
-              }}
-            >
-              <IconCloseCircle />
-            </button>
+            <div className={styles.close}>
+              <IconRemove
+                size={48}
+                title="Отмена"
+                onClick={() => {
+                  setAuthVisible(false);
+                }}
+              />
+            </div>
             <div className={styles.logo}>
               <Logo asLink={false} size={44} />
             </div>

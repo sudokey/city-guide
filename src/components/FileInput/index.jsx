@@ -20,6 +20,9 @@ const FileInput = ({
         {...inputProps}
         type="file"
         ref={inputRef}
+        style={{
+          display: 'none',
+        }}
       />
     </button>
   );

@@ -5,7 +5,7 @@ import Logo from '../../../../Logo';
 import UserPickOrAuth from '../../../../UserPickOrAuth';
 import ContentCreator from '../../../../ContentCreator';
 import Button from '../../../../Button';
-import CategoryEditor from '../../../../CategoryEditor';
+import CategoryForm from '../../../../CategoryForm';
 
 const PagePostCreate = () => (
   <Layout
@@ -22,7 +22,7 @@ const PagePostCreate = () => (
     )}
     content={(
       <ContentCreator>
-        <CategoryEditor />
+        <CategoryForm />
       </ContentCreator>
     )}
   />

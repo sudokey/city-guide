@@ -4,7 +4,7 @@ import Header from '../../../Header';
 import Logo from '../../../Logo';
 import Button from '../../../Button';
 import styles from '../styles.less';
-import PostEditor from '../../../PostEditor';
+import PostForm from '../../../PostForm';
 import ContentCreator from '../../../ContentCreator';
 import UserPickOrAuth from '../../../UserPickOrAuth';
 
@@ -25,7 +25,7 @@ const PagePostCreate = () => (
     )}
     content={(
       <ContentCreator>
-        <PostEditor />
+        <PostForm />
       </ContentCreator>
     )}
   />
