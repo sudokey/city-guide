@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles.less';
 import FileInput from '../../FileInput';
-import IconPlus from '../../Icons/Plus';
 import Image from './Image';
+import UploadLabel from '../../UploadLabel';
 
 // TODO: Transition on remove and add images
 // TODO: Fix responsive
@@ -40,7 +40,7 @@ const Cover = ({ images, onChange }) => {
       <div className={styles.item}>
         <div className={styles.content}>
           <FileInput
-            title="Добавить изображение"
+            title="Добавьте фотографии"
             className={styles.fileInput}
             inputProps={{
               multiple: true,
@@ -54,10 +54,11 @@ const Cover = ({ images, onChange }) => {
               },
             }}
           >
-            <IconPlus />
-            Добавьте
-            <br />
-            фотографии
+            <UploadLabel>
+              Добавьте
+              <br />
+              фотографии
+            </UploadLabel>
           </FileInput>
         </div>
       </div>

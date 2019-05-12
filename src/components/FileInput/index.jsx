@@ -6,11 +6,13 @@ const FileInput = ({
   children, inputProps, ...rest
 }) => {
   const inputRef = useRef(null);
+  const buttonRef = useRef(null);
 
   return (
     <button
       {...rest}
       type="button"
+      ref={buttonRef}
       onClick={() => {
         inputRef.current.click();
       }}
@@ -22,6 +24,13 @@ const FileInput = ({
         ref={inputRef}
         style={{
           display: 'none',
+        }}
+        onChange={(e) => {
+          if (typeof inputProps.onChange === 'function') {
+            inputProps.onChange(e);
+          }
+          e.target.value = null;
+          buttonRef.current.blur();
         }}
       />
     </button>

@@ -6,7 +6,7 @@ import styles from './styles.less';
 import IconClose from '../Icons/Close';
 
 const Tag = ({
-  name, blue, blueDark, icon, onClickRemove, url,
+  name, url, iconSvg, iconUrl, blue, blueDark, onClickRemove,
 }) => {
   const TagComponent = url ? Link : 'div';
 
@@ -21,9 +21,14 @@ const Tag = ({
       to={url || undefined}
     >
       <span className={styles.inner}>
-        {icon && (
+        {iconSvg && (
           <span className={styles.icon}>
-            {icon}
+            {iconSvg}
+          </span>
+        )}
+        {iconUrl && (
+          <span className={styles.icon}>
+            <img src={iconUrl} alt="" />
           </span>
         )}
         {name}
@@ -43,7 +48,8 @@ const Tag = ({
 
 Tag.propTypes = {
   name: PropTypes.string.isRequired,
-  icon: PropTypes.node,
+  iconSvg: PropTypes.node,
+  iconUrl: PropTypes.string,
   url: PropTypes.string,
   blue: PropTypes.bool,
   blueDark: PropTypes.bool,
@@ -52,7 +58,8 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   url: undefined,
-  icon: undefined,
+  iconSvg: undefined,
+  iconUrl: undefined,
   blue: false,
   blueDark: false,
   onClickRemove: undefined,

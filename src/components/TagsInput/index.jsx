@@ -46,7 +46,7 @@ const TagsInput = ({ tags, defaultTags, onChange }) => {
                 data.unshift({
                   value,
                   name: `Создать новый тег ${value}`,
-                  icon: <IconPlus />,
+                  iconSvg: <IconPlus />,
                   type: 'new',
                 });
               }

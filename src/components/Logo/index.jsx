@@ -5,10 +5,10 @@ import styles from './styles.less';
 import { Routes } from '../../libs';
 
 const Logo = ({ asLink, size }) => {
-  const Tag = asLink ? Link : 'span';
+  const LogoTag = asLink ? Link : 'span';
 
   return (
-    <Tag
+    <LogoTag
       to={asLink ? Routes.getHomePageUrl() : undefined}
       className={styles.logo}
       style={{

@@ -16,7 +16,8 @@
     "firebase": {
       "apiKey": "AIzaSyCerbhtwCaQSxtvOYtd4VGpUCwVAtFdvB0",
       "authDomain": "city-guide-f002c.firebaseapp.com",
-      "projectId": "city-guide-f002c"
+      "projectId": "city-guide-f002c",
+      "storageBucket": "gs://city-guide-f002c.appspot.com/"
     }
   },
   "devDependencies": {
@@ -53,6 +54,7 @@
     "react-router5": "^7.1.0",
     "react-sortable-hoc": "^1.9.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "shortid": "^2.2.14"
   }
 }
