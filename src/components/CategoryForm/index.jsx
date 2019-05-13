@@ -5,8 +5,9 @@ import { Field } from '../Form';
 import UploadIcon from './UploadIcon';
 import Tag from '../Tag';
 
-// TODO: Add validation
-const CategoryForm = ({ data, onChange, onSubmit }) => (
+const CategoryForm = ({
+  data, loading, onChange, onSubmit,
+}) => (
   <form
     onSubmit={(e) => {
       e.preventDefault();
@@ -14,9 +15,11 @@ const CategoryForm = ({ data, onChange, onSubmit }) => (
     }}
   >
     <Field>
+      {/* TODO: Add validation */}
       {/* TODO: Add max length */}
       <TextInput
         placeholder="Введите имя категории"
+        disabled={loading}
         value={data.name}
         onChange={(e) => {
           onChange({
@@ -28,6 +31,7 @@ const CategoryForm = ({ data, onChange, onSubmit }) => (
     </Field>
     <Field>
       <UploadIcon
+        disabled={loading}
         url={data.iconUrl}
         onUpload={({ url }) => {
           onChange({
@@ -59,6 +63,7 @@ CategoryForm.propTypes = {
     name: PropTypes.string.isRequired,
     iconUrl: PropTypes.string.isRequired,
   }).isRequired,
+  loading: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

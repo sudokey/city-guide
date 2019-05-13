@@ -20,11 +20,7 @@
 }
 
 button:focus > .uploadLabel,
-button:hover > .uploadLabel {
+button:hover:not(:disabled) > .uploadLabel {
   fill: @blue;
   color: @blue;
-}
-
-button:disabled > .uploadLabel {
-  opacity: 0.5;
 }

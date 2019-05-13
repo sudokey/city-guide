@@ -14,6 +14,7 @@ export default class {
     return config.tags.filter(tag => tag.name.toLowerCase().indexOf(query.toLowerCase()) === 0);
   }
 
+  // TODO: Add validation for icon size (44, 44) and ext (png)
   static async uploadCategoryIcon(file) {
     const storageRef = firebase.storage().ref();
     const imageName = shortid.generate();
@@ -42,6 +43,7 @@ export default class {
   static async createCategory(data) {
     const db = firebase.firestore();
 
+    // TODO: Add validation for icon (required) and name (max-length) in firebase
     try {
       const categoryRef = await db.collection('categories').add(data);
       return categoryRef;

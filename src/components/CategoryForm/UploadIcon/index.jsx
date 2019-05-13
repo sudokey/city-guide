@@ -5,29 +5,32 @@ import FileInput from '../../FileInput';
 import IconRemove from '../../IconRemove';
 import UplaodLabel from '../../UploadLabel';
 import Api from '../../../libs/api';
+import { loader } from '../../../libs/Loader';
 
-const UploadIcon = ({ url, onUpload, onClickRemove }) => {
+const UploadIcon = ({
+  url, disabled, onUpload, onClickRemove,
+}) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    // TODO: Remove blur on file change
     <FileInput
       title="Добавьте иконку"
       className={styles.uploadIcon}
-      disabled={loading}
+      disabled={loading || disabled}
       inputProps={{
         multiple: false,
         accept: 'image/png, image/x-png',
         onChange: async (e) => {
+          loader.start();
           setLoading(true);
           try {
-            // TODO: Add loader
             const resultUrl = await Api.uploadCategoryIcon(e.target.files[0]);
             onUpload({ url: resultUrl });
           } catch (err) {
             // TODO: Show notification
             console.error(err);
           }
+          loader.done();
           setLoading(false);
         },
       }}
@@ -59,12 +62,14 @@ const UploadIcon = ({ url, onUpload, onClickRemove }) => {
 
 UploadIcon.propTypes = {
   url: PropTypes.string,
+  disabled: PropTypes.bool,
   onClickRemove: PropTypes.func.isRequired,
   onUpload: PropTypes.func.isRequired,
 };
 
 UploadIcon.defaultProps = {
   url: undefined,
+  disabled: false,
 };
 
 export default UploadIcon;

@@ -16,8 +16,8 @@
   cursor: pointer;
   outline: none;
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     background: rgba(0, 0, 0, 0.2);
 
     .remove {

@@ -8,6 +8,7 @@ import ContentCreator from '../../../../ContentCreator';
 import Button from '../../../../Button';
 import CategoryForm from '../../../../CategoryForm';
 import { Api, Routes } from '../../../../../libs';
+import { loader } from '../../../../../libs/Loader';
 
 const PageAdminCategoriesCreate = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const PageAdminCategoriesCreate = ({ history }) => {
     if (loading) {
       return;
     }
-    // TODO: Loading
+    loader.start();
     setLoading(true);
     try {
       await Api.createCategory(category);
@@ -31,6 +32,7 @@ const PageAdminCategoriesCreate = ({ history }) => {
       // TODO: Add notification
       console.error(err);
     }
+    loader.done();
     setLoading(false);
   };
 
@@ -57,6 +59,7 @@ const PageAdminCategoriesCreate = ({ history }) => {
         <ContentCreator>
           <CategoryForm
             data={category}
+            loading={loading}
             onSubmit={submit}
             onChange={(data) => {
               setCategory(data);

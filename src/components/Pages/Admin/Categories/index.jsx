@@ -8,19 +8,22 @@ import styles from '../styles.less';
 import UserPickOrAuth from '../../../UserPickOrAuth';
 import { Api, Routes } from '../../../../libs';
 import Button from '../../../Button';
+import { loader } from '../../../../libs/Loader';
 
 const PageAdminCategories = () => {
   const [categories, setCategories] = useState([]);
 
   // TODO: Add to redux store
   const getCategories = async () => {
+    loader.start();
     try {
       const result = await Api.getCategories();
       setCategories(result);
     } catch (err) {
-      // TODO: Show notification
+      // TODO: Show error notification
       console.error(err);
     }
+    loader.done();
   };
 
   useEffect(() => {
