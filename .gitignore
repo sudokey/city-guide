@@ -3,3 +3,5 @@
 .firebase
 dist
 node_modules
+firestore-debug.log
+firebase-debug.log
