@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.less';
 import FileInput from '../../FileInput';
 import IconRemove from '../../IconRemove';
 import UplaodLabel from '../../UploadLabel';
 import Api from '../../../libs/api';
-import { loader } from '../../../libs/Loader';
+import { useLoader } from '../../../libs/Loader';
 
 const UploadIcon = ({
   url, disabled, onUpload, onClickRemove,
 }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useLoader();
 
   return (
     <FileInput
@@ -21,7 +21,6 @@ const UploadIcon = ({
         multiple: false,
         accept: 'image/png, image/x-png',
         onChange: async (e) => {
-          loader.start();
           setLoading(true);
           try {
             const resultUrl = await Api.uploadCategoryIcon(e.target.files[0]);
@@ -30,7 +29,6 @@ const UploadIcon = ({
             // TODO: Show notification
             console.error(err);
           }
-          loader.done();
           setLoading(false);
         },
       }}

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import styles from './styles.less';
 
 export default class Loader {
@@ -32,3 +33,20 @@ export default class Loader {
 }
 
 export const loader = new Loader();
+
+export const useLoader = () => {
+  const [loading, setLoading] = useState();
+
+  useEffect(() => {
+    if (loading === undefined) {
+      return;
+    }
+    if (loading) {
+      loader.start();
+    } else {
+      loader.done();
+    }
+  }, [loading]);
+
+  return [loading, setLoading];
+};
