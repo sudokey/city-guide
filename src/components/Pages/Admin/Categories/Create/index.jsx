@@ -16,7 +16,10 @@ const PageAdminCategoriesCreate = ({ history }) => {
     name: '',
     iconUrl: '',
   });
+  // TODO: Add loading hook
+  // const [loading, setLoading] = useLoading(false);
 
+  // TODO: Add redux
   const submit = async () => {
     if (loading) {
       return;
@@ -61,9 +64,7 @@ const PageAdminCategoriesCreate = ({ history }) => {
             data={category}
             loading={loading}
             onSubmit={submit}
-            onChange={(data) => {
-              setCategory(data);
-            }}
+            onChange={setCategory}
           />
         </ContentCreator>
       )}

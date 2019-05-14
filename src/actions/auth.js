@@ -52,7 +52,6 @@ export const authWithFacebook = () => async () => {
 
 export const signOut = () => async () => {
   try {
-    // TODO: Show loader
     await firebase.auth().signOut();
   } catch (e) {
     // TODO: Show notification
