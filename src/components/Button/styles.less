@@ -2,20 +2,21 @@
 
 .button {
   display: inline-block;
-  border: 1px solid @black;
-  border-radius: 50px;
+  border-radius: 8px;
   vertical-align: middle;
   text-decoration: none;
   font-size: 14px;
-  padding: 0 12px;
-  height: 30px;
-  line-height: 28px;
+  padding: 0 20px;
+  height: 44px;
+  line-height: 44px;
+  border: none;
   cursor: pointer;
   background: transparent;
   outline: none;
+  color: @blackMedium;
+  transition: background 0.2s ease;
 
-  &.green {
-    border-color: @green;
-    color: @green;
+  &:hover {
+    background: @greyLightMedium;
   }
 }

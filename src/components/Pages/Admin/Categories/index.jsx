@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 import Layout from '../../../Layout';
 import Header from '../../../Header';
 import Logo from '../../../Logo';
@@ -6,19 +8,15 @@ import ContentCreator from '../../../ContentCreator';
 import Tags from '../../../Tags';
 import styles from '../styles.less';
 import UserPickOrAuth from '../../../UserPickOrAuth';
-import { Api, Routes } from '../../../../libs';
+import Routes from '../../../../libs/routes';
 import Button from '../../../Button';
 import { withLoader } from '../../../../libs/Loader';
+import * as categoriesActions from '../../../../actions/categories';
 
-const PageAdminCategories = () => {
-  const [categories, setCategories] = useState([]);
-
-  // TODO: Add to redux store
-  const getCategories = async () => {
+const PageAdminCategories = ({ getCategories, categories }) => {
+  const getData = async () => {
     try {
-      // TODO: Change loader hook to wrapper (withLoader)
-      const result = await withLoader(Api.getCategories());
-      setCategories(result);
+      await withLoader(getCategories());
     } catch (err) {
       // TODO: Show error notification
       console.error(err);
@@ -26,7 +24,7 @@ const PageAdminCategories = () => {
   };
 
   useEffect(() => {
-    getCategories();
+    getData();
   }, []);
 
   // TODO: Hide if no user
@@ -66,4 +64,17 @@ const PageAdminCategories = () => {
   );
 };
 
-export default PageAdminCategories;
+PageAdminCategories.propTypes = {
+  getCategories: PropTypes.func.isRequired,
+  categories: Tags.propTypes.tags,
+};
+
+PageAdminCategories.defaultProps = {
+  categories: [],
+};
+
+export default connect(state => ({
+  categories: Object.values(state.categories),
+}), {
+  getCategories: categoriesActions.list,
+})(PageAdminCategories);

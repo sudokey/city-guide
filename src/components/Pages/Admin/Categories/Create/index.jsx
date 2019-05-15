@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Layout from '../../../../Layout';
@@ -7,10 +8,11 @@ import UserPickOrAuth from '../../../../UserPickOrAuth';
 import ContentCreator from '../../../../ContentCreator';
 import Button from '../../../../Button';
 import CategoryForm from '../../../../CategoryForm';
-import { Api, Routes } from '../../../../../libs';
+import Routes from '../../../../../libs/routes';
 import { withLoader } from '../../../../../libs/Loader';
+import * as categoriesActions from '../../../../../actions/categories';
 
-const PageAdminCategoriesCreate = ({ history }) => {
+const PageAdminCategoriesCreate = ({ history, createCategory }) => {
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState({
     name: '',
@@ -24,7 +26,7 @@ const PageAdminCategoriesCreate = ({ history }) => {
     }
     setLoading(true);
     try {
-      await withLoader(Api.createCategory(category));
+      await withLoader(createCategory(category));
       setTimeout(() => {
         history.push(Routes.getAdminCategoriesUrl());
       }, 0);
@@ -72,6 +74,9 @@ PageAdminCategoriesCreate.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  createCategory: PropTypes.func.isRequired,
 };
 
-export default PageAdminCategoriesCreate;
+export default connect(null, {
+  createCategory: categoriesActions.create,
+})(PageAdminCategoriesCreate);

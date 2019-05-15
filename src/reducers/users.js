@@ -5,6 +5,7 @@ export default (
   action,
 ) => {
   switch (action.type) {
+    // TODO: Fix action.data as array
     case USERS_ADD:
       return {
         ...state,

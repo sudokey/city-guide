@@ -1,37 +1,23 @@
-// category
-  // name str
-  // icon uid
+import { CATEGORIES_ADD } from '../libs/constants';
 
-// group
-  // name str
-  // categories arr
+export default (
+  state = {},
+  action,
+) => {
+  switch (action.type) {
+    case CATEGORIES_ADD:
+      return {
+        ...state,
+        ...action.data.reduce((result, item) => ({
+          ...result,
+          [item.id]: {
+            ...state[item.uid],
+            ...item,
+          },
+        }), {}),
+      };
 
-
-
-
-
-
-
-
-
-// groups
-// categories
-// categoriesSearch
-
-// import { } from '../libs/constants';
-
-// export default (
-//   state = {},
-//   action,
-// ) => {
-//   switch (action.type) {
-//     case AUTH_SET_DATA:
-//       return {
-//         ...state,
-//         ...action.data,
-//       };
-
-//     default:
-//       return state;
-//   }
-// };
+    default:
+      return state;
+  }
+};

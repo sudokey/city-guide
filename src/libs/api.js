@@ -34,19 +34,27 @@ export default class {
 
     try {
       const querySnapshot = await db.collection('categories').get();
-      return querySnapshot.docs.map(doc => doc.data());
+      return querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
     } catch (err) {
       throw err;
     }
   }
 
-  static async createCategory(data) {
+  static async createCategory({
+    name,
+    iconUrl,
+  }) {
     const db = firebase.firestore();
 
-    // TODO: Add validation for icon (required) and name (max-length) in firebase
     try {
-      const categoryRef = await db.collection('categories').add(data);
-      return categoryRef;
+      const categoryRef = await db.collection('categories').add({
+        name,
+        iconUrl,
+      });
+      return categoryRef.id;
     } catch (err) {
       throw err;
     }
