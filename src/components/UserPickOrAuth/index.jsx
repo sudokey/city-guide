@@ -13,7 +13,6 @@ const UserPickOrAuth = ({ user, signOut, authLoaing }) => (
         {user ? (
           <>
             <Button
-              green
               onClick={signOut}
             >
               Выйти
@@ -27,7 +26,6 @@ const UserPickOrAuth = ({ user, signOut, authLoaing }) => (
           <Auth>
             {showPopup => (
               <Button
-                green
                 onClick={showPopup}
               >
                 Войти

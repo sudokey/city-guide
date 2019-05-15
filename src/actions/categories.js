@@ -6,6 +6,7 @@ export const add = data => ({
   data,
 });
 
+// TODO: Remove list action, add change listener
 export const list = () => async (dispatch) => {
   try {
     const categories = await Api.getCategories();

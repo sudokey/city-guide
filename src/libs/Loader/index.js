@@ -15,7 +15,10 @@ export default class Loader {
   start() {
     const id = shortid.generate();
     this.ids.push(id);
-    this.el.classList.add(styles.start);
+
+    setTimeout(() => {
+      this.el.classList.add(styles.start);
+    }, 0);
 
     return id;
   }

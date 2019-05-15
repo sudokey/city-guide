@@ -38,7 +38,6 @@ const PageAdminCategories = ({ getCategories, categories }) => {
           side={[
             // TODO: Hide if no user
             <Button
-              green
               url={Routes.getAdminCategoriesCreateUrl()}
             >
               Добавить

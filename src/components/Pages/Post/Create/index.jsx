@@ -18,7 +18,7 @@ const PagePostCreate = () => (
           <span className={styles.status}>Сохранено</span>,
         ]}
         side={[
-          <Button green>Опубликовать</Button>,
+          <Button>Опубликовать</Button>,
           <UserPickOrAuth />,
         ]}
       />

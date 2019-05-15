@@ -46,7 +46,6 @@ const PageAdminCategoriesCreate = ({ history, createCategory }) => {
           ]}
           side={[
             <Button
-              green
               disabled={loading}
               onClick={submit}
             >
