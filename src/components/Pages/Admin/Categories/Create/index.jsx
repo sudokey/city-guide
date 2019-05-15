@@ -8,10 +8,10 @@ import ContentCreator from '../../../../ContentCreator';
 import Button from '../../../../Button';
 import CategoryForm from '../../../../CategoryForm';
 import { Api, Routes } from '../../../../../libs';
-import { useLoader } from '../../../../../libs/Loader';
+import { withLoader } from '../../../../../libs/Loader';
 
 const PageAdminCategoriesCreate = ({ history }) => {
-  const [loading, setLoading] = useLoader();
+  const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState({
     name: '',
     iconUrl: '',
@@ -24,7 +24,7 @@ const PageAdminCategoriesCreate = ({ history }) => {
     }
     setLoading(true);
     try {
-      await Api.createCategory(category);
+      await withLoader(Api.createCategory(category));
       setTimeout(() => {
         history.push(Routes.getAdminCategoriesUrl());
       }, 0);

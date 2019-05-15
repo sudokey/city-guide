@@ -1,5 +1,4 @@
 import shortid from 'shortid';
-import { useState, useEffect } from 'react';
 import styles from './styles.less';
 
 export default class Loader {
@@ -36,18 +35,14 @@ export default class Loader {
 
 export const loader = new Loader();
 
-export const useLoader = (initialValue) => {
-  const [loading, setLoading] = useState(!!initialValue);
-  const [ids, setIds] = useState([]);
-
-  useEffect(() => {
-    if (loading) {
-      setIds(ids.concat(loader.start()));
-    } else if (ids.length) {
-      loader.done(ids);
-      setIds([]);
-    }
-  }, [loading]);
-
-  return [loading, setLoading];
+export const withLoader = async (promsie) => {
+  const loaderId = loader.start();
+  try {
+    const result = await promsie;
+    loader.done([loaderId]);
+    return result;
+  } catch (err) {
+    loader.done([loaderId]);
+    throw err;
+  }
 };

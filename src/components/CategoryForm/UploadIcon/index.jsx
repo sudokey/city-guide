@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.less';
 import FileInput from '../../FileInput';
 import IconRemove from '../../IconRemove';
 import UplaodLabel from '../../UploadLabel';
 import Api from '../../../libs/api';
-import { useLoader } from '../../../libs/Loader';
+import { withLoader } from '../../../libs/Loader';
 
 const UploadIcon = ({
   url, disabled, onUpload, onClickRemove,
 }) => {
-  const [loading, setLoading] = useLoader();
+  const [loading, setLoading] = useState();
 
   return (
     <FileInput
@@ -23,7 +23,7 @@ const UploadIcon = ({
         onChange: async (e) => {
           setLoading(true);
           try {
-            const resultUrl = await Api.uploadCategoryIcon(e.target.files[0]);
+            const resultUrl = await withLoader(Api.uploadCategoryIcon(e.target.files[0]));
             onUpload({ url: resultUrl });
           } catch (err) {
             // TODO: Show notification
