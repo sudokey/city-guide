@@ -8,22 +8,47 @@ import UserPickOrAuth from '../../../../UserPickOrAuth';
 import ContentCreator from '../../../../ContentCreator';
 import Button from '../../../../Button';
 import CategoryForm from '../../../../CategoryForm';
-import Routes from '../../../../../libs/routes';
+import { Routes, Validator } from '../../../../../libs';
 import { withLoader } from '../../../../../libs/Loader';
-import * as categoriesActions from '../../../../../actions/categories';
+import { create as createCategory } from '../../../../../actions/categories';
+import { FIELD_ERROR_REQUIRED } from '../../../../../libs/constants';
 
 const PageAdminCategoriesCreate = ({ history, createCategory }) => {
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  // TODO: Validate on create
   const [category, setCategory] = useState({
     name: '',
     iconUrl: '',
   });
+  const rules = {
+    // TODO: Unify validators
+    name: (val) => {
+      if (!val || !val.length) {
+        return FIELD_ERROR_REQUIRED;
+      }
+      return null;
+    },
+    iconUrl: (val) => {
+      if (!val || !val.length) {
+        return FIELD_ERROR_REQUIRED;
+      }
+      return null;
+    },
+  };
 
-  // TODO: Add redux
   const submit = async () => {
     if (loading) {
       return;
     }
+
+    // TODO: Validate on change
+    const { errors, isValid } = Validator.validate(category, rules);
+    setErrors(errors);
+    if (!isValid) {
+      return;
+    }
+
     setLoading(true);
     try {
       await withLoader(createCategory(category));
@@ -59,6 +84,7 @@ const PageAdminCategoriesCreate = ({ history, createCategory }) => {
         <ContentCreator>
           <CategoryForm
             data={category}
+            errors={errors}
             loading={loading}
             onSubmit={submit}
             onChange={setCategory}
@@ -77,5 +103,5 @@ PageAdminCategoriesCreate.propTypes = {
 };
 
 export default connect(null, {
-  createCategory: categoriesActions.create,
+  createCategory,
 })(PageAdminCategoriesCreate);

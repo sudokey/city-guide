@@ -6,7 +6,7 @@ import UploadIcon from './UploadIcon';
 import Tag from '../Tag';
 
 const CategoryForm = ({
-  data, loading, onChange, onSubmit,
+  data, loading, onChange, onSubmit, errors,
 }) => (
   <form
     onSubmit={(e) => {
@@ -28,6 +28,7 @@ const CategoryForm = ({
           });
         }}
       />
+      {errors.name}
     </Field>
     <Field>
       <UploadIcon
@@ -46,6 +47,7 @@ const CategoryForm = ({
           });
         }}
       />
+      {errors.iconUrl}
     </Field>
     {data.name && (
       <Field>
@@ -63,9 +65,17 @@ CategoryForm.propTypes = {
     name: PropTypes.string.isRequired,
     iconUrl: PropTypes.string.isRequired,
   }).isRequired,
+  errors: PropTypes.shape({
+    name: PropTypes.string,
+    iconUrl: PropTypes.string,
+  }),
   loading: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+};
+
+CategoryForm.defaultProps = {
+  errors: {},
 };
 
 export default CategoryForm;
