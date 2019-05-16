@@ -7,3 +7,4 @@
 - [ ] Fix static version (html cache problem)
 - [ ] Add ssr
 - [ ] Add facebook app for auth
+- [x] Add ga
