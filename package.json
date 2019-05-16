@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "start": "npm run clean && parcel ./src/index.html",
+    "start": "npm run clean && parcel ./src/index.html --no-hmr",
     "build": "npm run clean && parcel build ./src/index.html --no-source-maps",
     "deploy": "npm run build && firebase deploy",
     "deploy-rules": "firebase deploy --only firestore:rules"

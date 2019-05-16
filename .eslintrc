@@ -9,6 +9,7 @@
   },
   "rules": {
     "react/no-array-index-key": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "no-shadow": "off"
   }
 }

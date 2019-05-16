@@ -6,16 +6,14 @@ export const add = data => ({
   data,
 });
 
-// TODO: Remove list action, add single change listener
-export const list = () => async (dispatch) => {
-  try {
-    const categories = await Api.getCategories();
+export const startChangeListener = () => async dispatch => (
+  Api.addCategoriesListner((categories) => {
     dispatch(add(categories));
-    return categories;
-  } catch (err) {
-    throw err;
-  }
-};
+  }, (err) => {
+    // TODO: Add notification
+    console.error(err);
+  })
+);
 
 export const create = ({
   name,

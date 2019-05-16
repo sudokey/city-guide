@@ -10,6 +10,7 @@ import App from './components/App';
 import rootReducer from './reducers';
 import { config } from '../package.json';
 import * as authActions from './actions/auth';
+import * as categoriesActions from './actions/categories';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -22,5 +23,6 @@ ReactDOM.render(
   document.getElementById('app-root'),
   () => {
     store.dispatch(authActions.startAuthStateChangeListener());
+    store.dispatch(categoriesActions.startChangeListener());
   },
 );

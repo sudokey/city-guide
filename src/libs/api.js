@@ -29,18 +29,20 @@ export default class {
     }
   }
 
-  static async getCategories() {
-    const db = firebase.firestore();
-
-    try {
-      const querySnapshot = await db.collection('categories').get();
-      return querySnapshot.docs.map(doc => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-    } catch (err) {
-      throw err;
-    }
+  static async addCategoriesListner(onSuccess, onError) {
+    return firebase.firestore().collection('categories')
+      .onSnapshot((snapshot) => {
+        const data = [];
+        snapshot.docChanges().forEach((change) => {
+          data.push({
+            ...change.doc.data(),
+            id: change.doc.id,
+          });
+        });
+        onSuccess(data);
+      }, (err) => {
+        onError(err);
+      });
   }
 
   static async createCategory({
