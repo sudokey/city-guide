@@ -1,4 +1,4 @@
-import { CATEGORIES_ADD } from '../libs/constants';
+import { CATEGORIES_ADD, CATEGORIES_REMOVE } from '../libs/constants';
 
 export default (
   state = {},
@@ -11,11 +11,19 @@ export default (
         ...action.data.reduce((result, item) => ({
           ...result,
           [item.id]: {
-            ...state[item.uid],
+            ...state[item.id],
             ...item,
           },
         }), {}),
       };
+
+    case CATEGORIES_REMOVE:
+      return Object.values(state).reduce((result, item) => ({
+        ...result,
+        ...(action.data.includes(item.id) ? null : {
+          [item.id]: item,
+        }),
+      }), {});
 
     default:
       return state;

@@ -60,11 +60,15 @@
   background: transparent;
   cursor: pointer;
   fill: @blackMedium;
-  transition: fill 0.2s ease;
+  transition: fill 0.2s ease, opacity 0.2s ease;
 
   svg {
     width: 20px;
     height: 20px;
+  }
+
+  &:hover {
+    opacity: 0.5;
   }
 }
 

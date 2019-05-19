@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
 import Layout from '../../../Layout';
@@ -9,8 +10,10 @@ import styles from '../styles.less';
 import UserPickOrAuth from '../../../UserPickOrAuth';
 import Routes from '../../../../libs/routes';
 import Button from '../../../Button';
+import { remove as removeCategory } from '../../../../actions/categories';
+import { withLoader } from '../../../../libs/Loader';
 
-const PageAdminCategories = ({ categories }) => (
+const PageAdminCategories = ({ categories, removeCategory }) => (
   <Layout
     header={(
       <Header
@@ -35,7 +38,9 @@ const PageAdminCategories = ({ categories }) => (
           <Tags
             tags={categories.map(item => ({
               ...item,
-              blue: true,
+              onClickRemove: () => {
+                withLoader(removeCategory(item));
+              },
             }))}
           />
         </div>
@@ -46,6 +51,7 @@ const PageAdminCategories = ({ categories }) => (
 
 PageAdminCategories.propTypes = {
   categories: Tags.propTypes.tags,
+  removeCategory: PropTypes.func.isRequired,
 };
 
 PageAdminCategories.defaultProps = {
@@ -54,4 +60,6 @@ PageAdminCategories.defaultProps = {
 
 export default connect(state => ({
   categories: Object.values(state.categories),
-}))(PageAdminCategories);
+}), {
+  removeCategory,
+})(PageAdminCategories);

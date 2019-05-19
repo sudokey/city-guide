@@ -1,14 +1,27 @@
-import { CATEGORIES_ADD } from '../libs/constants';
+import { CATEGORIES_ADD, CATEGORIES_REMOVE } from '../libs/constants';
 import Api from '../libs/api';
 
-export const add = data => ({
+export const addList = data => ({
   type: CATEGORIES_ADD,
+  data,
+});
+
+export const removeList = data => ({
+  type: CATEGORIES_REMOVE,
   data,
 });
 
 export const startChangeListener = () => async dispatch => (
   Api.addCategoriesListner((categories) => {
-    dispatch(add(categories));
+    const addedCategories = categories
+      .filter(changes => ['added', 'modified'].includes(changes.type))
+      .map(changes => changes.data);
+    const removedCategories = categories
+      .filter(c => c.type === 'removed')
+      .map(changes => changes.data.id);
+
+    dispatch(addList(addedCategories));
+    dispatch(removeList(removedCategories));
   }, (err) => {
     // TODO: Add notification
     console.error(err);
@@ -25,6 +38,17 @@ export const create = ({
       iconUrl,
     });
     return categoryId;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const remove = ({
+  id,
+}) => async () => {
+  try {
+    await Api.removeCategory({ id });
+    return id;
   } catch (err) {
     throw err;
   }

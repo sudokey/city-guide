@@ -15,7 +15,9 @@ export default class {
   }
 
   // TODO: Add validation for icon size (44, 44) and ext (png)
-  static async uploadCategoryIcon(file) {
+  static async uploadCategoryIcon(
+    file,
+  ) {
     const storageRef = firebase.storage().ref();
     const imageName = shortid.generate();
     const imageExt = file.name.split('.').pop();
@@ -29,14 +31,20 @@ export default class {
     }
   }
 
-  static async addCategoriesListner(onSuccess, onError) {
+  static async addCategoriesListner(
+    onSuccess,
+    onError,
+  ) {
     return firebase.firestore().collection('categories')
       .onSnapshot((snapshot) => {
         const data = [];
         snapshot.docChanges().forEach((change) => {
           data.push({
-            ...change.doc.data(),
-            id: change.doc.id,
+            ...change,
+            data: {
+              ...change.doc.data(),
+              id: change.doc.id,
+            },
           });
         });
         onSuccess(data);
@@ -57,6 +65,18 @@ export default class {
         iconUrl,
       });
       return categoryRef.id;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async removeCategory({
+    id,
+  }) {
+    const db = firebase.firestore();
+
+    try {
+      await db.collection('categories').doc(id).delete();
     } catch (err) {
       throw err;
     }
