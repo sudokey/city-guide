@@ -1,0 +1,24 @@
+@import '../../App/vars.less';
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: background 0.2s ease, fill 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  fill: @greyDarkMedium;
+
+  &:hover {
+    transform: scale(1.04);
+    background: rgba(0, 0, 0, 0.2);
+    fill: @blue;
+  }
+}

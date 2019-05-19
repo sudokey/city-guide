@@ -1,6 +1,7 @@
 @import '../App/vars.less';
 
 .button {
+  box-sizing: border-box;
   display: inline-block;
   border-radius: 8px;
   vertical-align: middle;
@@ -18,5 +19,9 @@
 
   &:hover {
     background: @greyLightMedium;
+  }
+
+  &.strech {
+    width: 100%;
   }
 }

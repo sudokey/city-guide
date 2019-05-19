@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import Popup from '../Popup';
+import Popup, { Content } from '../Popup';
 import styles from './styles.less';
 import Logo from '../Logo';
 import * as authActions from '../../actions/auth';
-import IconRemove from '../IconRemove';
 
 const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
   const [authVisible, setAuthVisible] = useState(false);
@@ -22,16 +21,12 @@ const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
             setAuthVisible(false);
           }}
         >
-          <div className={styles.auth}>
-            <div className={styles.close}>
-              <IconRemove
-                size={48}
-                title="Отмена"
-                onClick={() => {
-                  setAuthVisible(false);
-                }}
-              />
-            </div>
+          <Content
+            className={styles.auth}
+            onClickClose={() => {
+              setAuthVisible(false);
+            }}
+          >
             <div className={styles.logo}>
               <Logo asLink={false} size={44} />
             </div>
@@ -52,7 +47,7 @@ const Auth = ({ children, authWithGoogle, authWithFacebook }) => {
               </button>
             </div>
             <p className={styles.terms}>Зарегистрировавшись или нет, вы соглашаетесь с Правилами сервиса</p>
-          </div>
+          </Content>
         </Popup>
       )}
     </>

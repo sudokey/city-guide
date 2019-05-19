@@ -53,6 +53,7 @@ UserPickOrAuth.defaultProps = {
 };
 
 export default connect(state => ({
+  // TODO: Add selector for user
   user: state.users[state.auth.userUid],
   authLoaing: state.auth.loading,
 }), authActions)(UserPickOrAuth);

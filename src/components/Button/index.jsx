@@ -5,17 +5,18 @@ import React from 'react';
 import styles from './styles.less';
 
 const Button = ({
-  children, url, ...rest
+  children, to, strech, ...rest
 }) => {
-  const ButtonTag = url ? Link : 'button';
+  const ButtonTag = to ? Link : 'button';
 
   return (
     <ButtonTag
       {...rest}
       className={classnames({
         [styles.button]: true,
+        [styles.strech]: strech,
       })}
-      to={url}
+      to={to}
     >
       {children}
     </ButtonTag>
@@ -25,12 +26,14 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  url: PropTypes.string,
+  to: PropTypes.string,
+  strech: PropTypes.bool,
 };
 
 Button.defaultProps = {
   type: undefined,
-  url: undefined,
+  to: undefined,
+  strech: false,
 };
 
 export default Button;

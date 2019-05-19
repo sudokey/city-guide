@@ -12,13 +12,14 @@
   font-weight: bold;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.1);
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
   cursor: pointer;
   outline: none;
 
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
     background: rgba(0, 0, 0, 0.2);
+    transform: scale(1.04);
 
     .remove {
       opacity: 1;

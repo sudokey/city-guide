@@ -62,3 +62,4 @@ Popup.defaultProps = {
 };
 
 export default Popup;
+export { default as Content } from './Content';

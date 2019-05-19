@@ -9,11 +9,11 @@ import Tags from '../../../Tags';
 import styles from '../styles.less';
 import UserPickOrAuth from '../../../UserPickOrAuth';
 import Routes from '../../../../libs/routes';
-import Button from '../../../Button';
 import { remove as removeCategory } from '../../../../actions/categories';
 import { withLoader } from '../../../../libs/Loader';
+import Confirmation from '../../../Confirmation';
 
-const PageAdminCategories = ({ categories, removeCategory }) => (
+const PageAdminCategories = ({ categories, history, removeCategory }) => (
   <Layout
     header={(
       <Header
@@ -21,12 +21,6 @@ const PageAdminCategories = ({ categories, removeCategory }) => (
           <Logo />,
         ]}
         side={[
-          // TODO: Hide if no user
-          <Button
-            url={Routes.getAdminCategoriesCreateUrl()}
-          >
-            Добавить
-          </Button>,
           <UserPickOrAuth />,
         ]}
       />
@@ -35,14 +29,28 @@ const PageAdminCategories = ({ categories, removeCategory }) => (
       <ContentCreator>
         <h2 className={styles.title}>Категории</h2>
         <div className={styles.section}>
-          <Tags
-            tags={categories.map(item => ({
-              ...item,
-              onClickRemove: () => {
-                withLoader(removeCategory(item));
-              },
-            }))}
-          />
+          <Confirmation
+            title="Уверены что хотите удалить?"
+            onAgree={(item) => {
+              withLoader(removeCategory(item));
+            }}
+          >
+            {({ showConfirmation }) => (
+              <Tags
+                // TODO: Hide if no user
+                onClickAdd={() => {
+                  history.push(Routes.getAdminCategoriesCreateUrl());
+                }}
+                tags={categories.map(item => ({
+                  ...item,
+                  // TODO: Hide if no user
+                  onClickRemove: () => {
+                    showConfirmation(item);
+                  },
+                }))}
+              />
+            )}
+          </Confirmation>
         </div>
       </ContentCreator>
     )}
@@ -52,6 +60,9 @@ const PageAdminCategories = ({ categories, removeCategory }) => (
 PageAdminCategories.propTypes = {
   categories: Tags.propTypes.tags,
   removeCategory: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 PageAdminCategories.defaultProps = {
