@@ -1,3 +1,5 @@
+import { FIELD_ERROR_REQUIRED } from './constants';
+
 export default class Validator {
   static validate(data, rules) {
     const fields = Object.keys(data);
@@ -52,5 +54,24 @@ export default class Validator {
     }
 
     return true;
+  }
+
+  static getValidatorFunctions() {
+    return ({
+      reuqired: (val) => {
+        if (!val || !val.length) {
+          return FIELD_ERROR_REQUIRED;
+        }
+        return null;
+      },
+    });
+  }
+
+  static validateCategory(categoryData) {
+    const { reuqired } = Validator.getValidatorFunctions();
+    return Validator.validate(categoryData, {
+      name: reuqired,
+      iconUrl: reuqired,
+    });
   }
 }

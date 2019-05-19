@@ -6,7 +6,7 @@ import UploadIcon from './UploadIcon';
 import Tag from '../Tag';
 
 const CategoryForm = ({
-  data, loading, onChange, onSubmit, errors,
+  data, errors, loading, submited, onChange, onSubmit,
 }) => (
   <form
     onSubmit={(e) => {
@@ -14,40 +14,50 @@ const CategoryForm = ({
       onSubmit(data);
     }}
   >
-    <Field>
-      {/* TODO: Add validation */}
-      {/* TODO: Add max length */}
-      <TextInput
-        placeholder="Введите имя категории"
-        disabled={loading}
-        value={data.name}
-        onChange={(e) => {
-          onChange({
-            ...data,
-            name: e.target.value,
-          });
-        }}
-      />
-      {errors.name}
+    <Field
+      error={errors.name}
+      submited={submited}
+    >
+      {({ setDirty }) => (
+        <TextInput
+          placeholder="Введите имя категории"
+          disabled={loading}
+          value={data.name}
+          onChange={(e) => {
+            setDirty(true);
+            onChange({
+              ...data,
+              name: e.target.value,
+            });
+          }}
+        />
+      )}
     </Field>
-    <Field>
-      <UploadIcon
-        disabled={loading}
-        url={data.iconUrl}
-        onUpload={({ url }) => {
-          onChange({
-            ...data,
-            iconUrl: url,
-          });
-        }}
-        onClickRemove={() => {
-          onChange({
-            ...data,
-            iconUrl: '',
-          });
-        }}
-      />
-      {errors.iconUrl}
+
+    <Field
+      error={errors.iconUrl}
+      submited={submited}
+    >
+      {({ setDirty }) => (
+        <UploadIcon
+          disabled={loading}
+          url={data.iconUrl}
+          onUpload={({ url }) => {
+            setDirty(true);
+            onChange({
+              ...data,
+              iconUrl: url,
+            });
+          }}
+          onClickRemove={() => {
+            setDirty(true);
+            onChange({
+              ...data,
+              iconUrl: '',
+            });
+          }}
+        />
+      )}
     </Field>
     {data.name && (
       <Field>
@@ -69,6 +79,7 @@ CategoryForm.propTypes = {
     name: PropTypes.string,
     iconUrl: PropTypes.string,
   }),
+  submited: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
@@ -76,6 +87,7 @@ CategoryForm.propTypes = {
 
 CategoryForm.defaultProps = {
   errors: {},
+  submited: false,
 };
 
 export default CategoryForm;

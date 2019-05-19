@@ -11,41 +11,29 @@ import CategoryForm from '../../../../CategoryForm';
 import { Routes, Validator } from '../../../../../libs';
 import { withLoader } from '../../../../../libs/Loader';
 import { create as createCategory } from '../../../../../actions/categories';
-import { FIELD_ERROR_REQUIRED } from '../../../../../libs/constants';
 
 const PageAdminCategoriesCreate = ({ history, createCategory }) => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submited, setSubmited] = useState(false);
   // TODO: Validate on create
   const [category, setCategory] = useState({
     name: '',
     iconUrl: '',
   });
-  const rules = {
-    // TODO: Unify validators
-    name: (val) => {
-      if (!val || !val.length) {
-        return FIELD_ERROR_REQUIRED;
-      }
-      return null;
-    },
-    iconUrl: (val) => {
-      if (!val || !val.length) {
-        return FIELD_ERROR_REQUIRED;
-      }
-      return null;
-    },
+
+  const validate = (category) => {
+    const { errors, isValid } = Validator.validateCategory(category);
+    setErrors(errors);
+    return isValid;
   };
 
   const submit = async () => {
-    if (loading) {
-      return;
-    }
+    const isValid = validate(category);
 
-    // TODO: Validate on change
-    const { errors, isValid } = Validator.validate(category, rules);
-    setErrors(errors);
-    if (!isValid) {
+    setSubmited(true);
+
+    if (loading || !isValid) {
       return;
     }
 
@@ -85,9 +73,13 @@ const PageAdminCategoriesCreate = ({ history, createCategory }) => {
           <CategoryForm
             data={category}
             errors={errors}
+            submited={submited}
             loading={loading}
             onSubmit={submit}
-            onChange={setCategory}
+            onChange={(category) => {
+              setCategory(category);
+              validate(category);
+            }}
           />
         </ContentCreator>
       )}
