@@ -22,4 +22,12 @@ export default class Routes {
   static getAdminCategoriesUpdateUrl(id) {
     return `${Routes.getAdminCategoriesUrl()}/${id}`;
   }
+
+  static getAdminCategoriesGroupCreateUrl() {
+    return `${Routes.getAdminCategoriesUrl()}/group/create`;
+  }
+
+  static getAdminCategoriesGroupUpdateUrl(id) {
+    return `${Routes.getAdminCategoriesUrl()}/group/${id}`;
+  }
 }

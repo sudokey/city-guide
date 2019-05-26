@@ -6,11 +6,6 @@ import Add from './Add';
 
 const Tags = ({ tags, onClickAdd }) => (
   <div className={styles.tags}>
-    {tags.map((tag, index) => (
-      <div className={styles.item} key={index}>
-        <Tag {...tag} />
-      </div>
-    ))}
     {onClickAdd && (
       <div className={styles.item}>
         <Add
@@ -18,6 +13,11 @@ const Tags = ({ tags, onClickAdd }) => (
         />
       </div>
     )}
+    {tags.map((tag, index) => (
+      <div className={styles.item} key={index}>
+        <Tag {...tag} />
+      </div>
+    ))}
   </div>
 );
 
