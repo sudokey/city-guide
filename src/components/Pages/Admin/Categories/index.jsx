@@ -32,7 +32,12 @@ const PageAdminCategories = ({ categories, history, removeCategory }) => (
           <Confirmation
             title="Уверены что хотите удалить?"
             onAgree={(item) => {
-              withLoader(removeCategory(item));
+              try {
+                withLoader(removeCategory(item));
+              } catch (err) {
+                // TODO: Show notification
+                console.error(err);
+              }
             }}
           >
             {({ showConfirmation }) => (

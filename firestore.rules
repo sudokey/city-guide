@@ -1,25 +1,30 @@
+// TODO: Add users collection and admin prop
+function userIsAdmin() {
+  return request.auth.uid in [
+    '9dtyjeGlaESF2YSTlO51hJ3IATJ2',
+    'Pg1dyAmvs9U2BjBmwDQ6nmHDGjf2'
+  ];
+}
+
+function isNotEmpty(value) {
+  return value.trim().size() > 0
+}
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    function userIsAdmin() {
-      // TODO: Add admins collection for save admin uuids
-      return request.auth.uid in [
-        '9dtyjeGlaESF2YSTlO51hJ3IATJ2',
-        'Pg1dyAmvs9U2BjBmwDQ6nmHDGjf2'
-      ];
-    }
 
     match /{document=**} {
       allow read: if false;
       allow write: if false;
     }
 
+    // TODO: Add url validation
     match /categories/{category} {
       allow read: if true;
       allow delete: if userIsAdmin()
-      // TODO: Add url validation
       allow write: if userIsAdmin()
-                   && request.resource.data.name.size() > 0
-                   && request.resource.data.iconUrl.size() > 0;
+                   && isNotEmpty(request.resource.data.name)
+                   && isNotEmpty(request.resource.data.iconUrl);
     }
   }
 }

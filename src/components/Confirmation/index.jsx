@@ -19,6 +19,7 @@ const Confirmation = ({ children, title, onAgree }) => {
 
       {visible && (
         <Popup
+          dark
           onClickClose={() => {
             setVisible(false);
           }}

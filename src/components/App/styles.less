@@ -24,6 +24,12 @@ html {
     transition: opacity 0.2s ease, left 0s linear 0.2s;
   }
 
+  &.dark {
+    &:after {
+      background: rgba(0,0,0,0.7);
+    }
+  }
+
   &.blur {
     &:after {
       left: 0;

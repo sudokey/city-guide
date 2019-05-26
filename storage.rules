@@ -1,0 +1,21 @@
+// TODO: Add users collection and admin prop
+function userIsAdmin() {
+  return request.auth.uid in [
+    '9dtyjeGlaESF2YSTlO51hJ3IATJ2',
+    'Pg1dyAmvs9U2BjBmwDQ6nmHDGjf2'
+  ];
+}
+
+service firebase.storage {
+	match /b/{bucket}/o {
+    match /{document=**} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    match /images/category/icons/{allPaths=**} {
+      allow read: if true;
+      allow write: if userIsAdmin();
+    }
+  }
+}

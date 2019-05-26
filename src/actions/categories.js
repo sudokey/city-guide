@@ -26,6 +26,7 @@ export const startChangeListener = () => async dispatch => (
       .filter(c => c.type === FIREBASE_EVENT_REMOVED)
       .map(changes => changes.data.id);
 
+    // TODO: Batch dispatch
     dispatch(addList(addedCategories));
     dispatch(removeList(removedCategories));
   }, (err) => {

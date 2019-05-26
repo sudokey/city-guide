@@ -16,11 +16,14 @@ class Popup extends PureComponent {
   }
 
   componentDidMount() {
-    const { onClickClose } = this.props;
+    const { onClickClose, dark } = this.props;
 
     popupRoot.appendChild(this.el);
     appRoot.style.top = `-${window.pageYOffset}px`;
     appRoot.classList.add(appStyles.fixed, appStyles.blur);
+    if (dark) {
+      appRoot.classList.add(appStyles.dark);
+    }
     window.scrollTo(0, 0);
 
     setTimeout(() => {
@@ -40,7 +43,7 @@ class Popup extends PureComponent {
 
     setTimeout(() => {
       popupRoot.removeChild(this.el);
-      appRoot.classList.remove(appStyles.fixed);
+      appRoot.classList.remove(appStyles.fixed, appStyles.dark);
       window.scrollTo(0, Math.abs(Number.parseInt(appRoot.style.top, 10)));
     }, 200);
   }
@@ -53,11 +56,13 @@ class Popup extends PureComponent {
 }
 
 Popup.propTypes = {
+  dark: PropTypes.bool,
   children: PropTypes.node.isRequired,
   onClickClose: PropTypes.func,
 };
 
 Popup.defaultProps = {
+  dark: false,
   onClickClose: undefined,
 };
 
