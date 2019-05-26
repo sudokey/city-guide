@@ -2,15 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './styles.less';
 
-const Layout = ({ children }) => (
-  <div className={styles.layout}>
+const Section = ({ children }) => (
+  <div className={styles.section}>
     {children}
   </div>
 );
 
-Layout.propTypes = {
+Section.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout;
-export { default as Content } from './Content';
+export default Section;

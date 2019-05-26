@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../../../Layout';
-import Header from '../../../Header';
+import Layout, { Content as LayoutContent } from '../../../Layout';
+import Header, { Section as HeaderSection } from '../../../Header';
 import Logo from '../../../Logo';
 import Button from '../../../Button';
 import styles from '../styles.less';
@@ -9,26 +9,24 @@ import ContentCreator from '../../../ContentCreator';
 import UserPickOrAuth from '../../../UserPickOrAuth';
 
 const PagePostCreate = () => (
-  <Layout
-    header={(
-      <Header
-        main={[
-          <Logo />,
-          <span>Драфт</span>,
-          <span className={styles.status}>Сохранено</span>,
-        ]}
-        side={[
-          <Button>Опубликовать</Button>,
-          <UserPickOrAuth />,
-        ]}
-      />
-    )}
-    content={(
+  <Layout>
+    <Header>
+      <HeaderSection>
+        <Logo />
+        <span>Драфт</span>
+        <span className={styles.status}>Сохранено</span>
+      </HeaderSection>
+      <HeaderSection>
+        <Button>Опубликовать</Button>
+        <UserPickOrAuth />
+      </HeaderSection>
+    </Header>
+    <LayoutContent>
       <ContentCreator>
         <PostForm />
       </ContentCreator>
-    )}
-  />
+    </LayoutContent>
+  </Layout>
 );
 
 export default PagePostCreate;

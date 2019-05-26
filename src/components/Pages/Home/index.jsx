@@ -1,25 +1,20 @@
 import React from 'react';
 import Layout from '../../Layout';
-import Header from '../../Header';
+import Header, { Section as HeaderSection } from '../../Header';
 import Logo from '../../Logo';
-import UserPick from '../../UserPick';
+import UserPickOrAuth from '../../UserPickOrAuth';
 
 const PageHome = () => (
-  <Layout
-    header={(
-      <Header
-        main={[
-          <Logo />,
-        ]}
-        side={[
-          <UserPick />,
-        ]}
-      />
-    )}
-    content={(
-      <div>Home Page</div>
-    )}
-  />
+  <Layout>
+    <Header>
+      <HeaderSection>
+        <Logo />
+      </HeaderSection>
+      <HeaderSection>
+        <UserPickOrAuth />
+      </HeaderSection>
+    </Header>
+  </Layout>
 );
 
 export default PageHome;

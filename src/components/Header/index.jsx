@@ -1,32 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import styles from './styles.less';
 
-const Header = ({ main, side }) => (
+const Header = ({ children }) => (
   <div className={styles.header}>
     <div className={styles.inner}>
-      <div className={styles.section}>
-        {main.map((item, index) => (
-          <Fragment key={index}>{item}</Fragment>
-        ))}
-      </div>
-      <div className={styles.section}>
-        {side.map((item, index) => (
-          <Fragment key={index}>{item}</Fragment>
-        ))}
-      </div>
+      {children}
     </div>
   </div>
 );
 
 Header.propTypes = {
-  main: PropTypes.arrayOf(PropTypes.node),
-  side: PropTypes.arrayOf(PropTypes.node),
-};
-
-Header.defaultProps = {
-  main: [],
-  side: [],
+  children: PropTypes.node.isRequired,
 };
 
 export default Header;
+export { default as Section } from './Section';

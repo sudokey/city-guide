@@ -70,6 +70,25 @@ export default class {
     }
   }
 
+  static async updateCategory({
+    id,
+    name,
+    iconUrl,
+  }) {
+    const db = firebase.firestore();
+
+    try {
+      const categoryRef = db.collection('categories').doc(id);
+      await categoryRef.update({
+        name,
+        iconUrl,
+      });
+      return id;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async removeCategory({
     id,
   }) {

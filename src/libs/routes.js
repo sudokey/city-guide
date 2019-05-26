@@ -18,4 +18,8 @@ export default class Routes {
   static getAdminCategoriesCreateUrl() {
     return `${Routes.getAdminCategoriesUrl()}/create`;
   }
+
+  static getAdminCategoriesUpdateUrl(id) {
+    return `${Routes.getAdminCategoriesUrl()}/${id}`;
+  }
 }

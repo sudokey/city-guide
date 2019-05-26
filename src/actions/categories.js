@@ -50,6 +50,22 @@ export const create = ({
   }
 };
 
+export const update = ({
+  id,
+  name,
+  iconUrl,
+}) => async () => {
+  try {
+    await Api.updateCategory({
+      id,
+      name,
+      iconUrl,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const remove = ({
   id,
 }) => async () => {

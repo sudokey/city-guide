@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React from 'react';
-import Layout from '../../../Layout';
-import Header from '../../../Header';
+import Layout, { Content as LayoutContent } from '../../../Layout';
+import Header, { Section as HeaderSection } from '../../../Header';
 import Logo from '../../../Logo';
 import ContentCreator from '../../../ContentCreator';
 import Tags from '../../../Tags';
@@ -14,18 +14,16 @@ import { withLoader } from '../../../../libs/Loader';
 import Confirmation from '../../../Confirmation';
 
 const PageAdminCategories = ({ categories, history, removeCategory }) => (
-  <Layout
-    header={(
-      <Header
-        main={[
-          <Logo />,
-        ]}
-        side={[
-          <UserPickOrAuth />,
-        ]}
-      />
-    )}
-    content={(
+  <Layout>
+    <Header>
+      <HeaderSection>
+        <Logo />
+      </HeaderSection>
+      <HeaderSection>
+        <UserPickOrAuth />
+      </HeaderSection>
+    </Header>
+    <LayoutContent>
       <ContentCreator>
         <h2 className={styles.title}>Категории</h2>
         <div className={styles.section}>
@@ -48,6 +46,7 @@ const PageAdminCategories = ({ categories, history, removeCategory }) => (
                 }}
                 tags={categories.map(item => ({
                   ...item,
+                  url: Routes.getAdminCategoriesUpdateUrl(item.id),
                   // TODO: Hide if no user
                   onClickRemove: () => {
                     showConfirmation(item);
@@ -58,8 +57,8 @@ const PageAdminCategories = ({ categories, history, removeCategory }) => (
           </Confirmation>
         </div>
       </ContentCreator>
-    )}
-  />
+    </LayoutContent>
+  </Layout>
 );
 
 PageAdminCategories.propTypes = {
