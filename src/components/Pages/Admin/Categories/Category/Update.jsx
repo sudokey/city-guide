@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { update as updateCategory } from '../../../../../actions/categories';
 import CategoryForm from '../../../../CategoryForm';
 import { withLoader } from '../../../../../libs/Loader';
-import Popup, { Content as PopupContent } from '../../../../Popup';
+import Popup, { Content } from '../../../../Popup';
 import Routes from '../../../../../libs/routes';
+import styles from '../styles.less';
 
 const CategoryUpdate = ({
   category, updateCategory, history,
@@ -23,7 +24,10 @@ const CategoryUpdate = ({
       dark
       onClickClose={redirectToAdminCategories}
     >
-      <PopupContent>
+      <Content
+        className={styles.popupContent}
+        onClickClose={redirectToAdminCategories}
+      >
         <CategoryForm
           initialData={category}
           loading={loading}
@@ -39,7 +43,7 @@ const CategoryUpdate = ({
             setLoading(false);
           }}
         />
-      </PopupContent>
+      </Content>
     </Popup>
   );
 };

@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { create as createCategory } from '../../../../../actions/categories';
 import CategoryForm from '../../../../CategoryForm';
 import { withLoader } from '../../../../../libs/Loader';
-import Popup, { Content as PopupContent } from '../../../../Popup';
+import Popup, { Content } from '../../../../Popup';
 import Routes from '../../../../../libs/routes';
+import styles from '../styles.less';
 
 const CategoryCreate = ({ createCategory, history }) => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,10 @@ const CategoryCreate = ({ createCategory, history }) => {
       dark
       onClickClose={redirectToAdminCategories}
     >
-      <PopupContent>
+      <Content
+        className={styles.popupContent}
+        onClickClose={redirectToAdminCategories}
+      >
         <CategoryForm
           loading={loading}
           onSubmit={async (category) => {
@@ -36,7 +40,7 @@ const CategoryCreate = ({ createCategory, history }) => {
             setLoading(false);
           }}
         />
-      </PopupContent>
+      </Content>
     </Popup>
   );
 };
