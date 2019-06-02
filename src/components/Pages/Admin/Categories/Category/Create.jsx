@@ -2,26 +2,33 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { create as createCategory } from '../../../../../actions/categories';
-import Category from './index';
+import CategoryForm from '../../../../CategoryForm';
 import { withLoader } from '../../../../../libs/Loader';
 import Popup, { Content as PopupContent } from '../../../../Popup';
+import Routes from '../../../../../libs/routes';
 
-const CategoryCreate = ({ createCategory, onSuccess }) => {
+const CategoryCreate = ({ createCategory, history }) => {
   const [loading, setLoading] = useState(false);
+
+  const redirectToAdminCategories = () => {
+    setTimeout(() => {
+      history.push(Routes.getAdminCategoriesUrl());
+    }, 0);
+  };
 
   return (
     <Popup
       dark
-      onClickClose={onSuccess}
+      onClickClose={redirectToAdminCategories}
     >
       <PopupContent>
-        <Category
+        <CategoryForm
           loading={loading}
           onSubmit={async (category) => {
             setLoading(true);
             try {
               await withLoader(createCategory(category));
-              setTimeout(onSuccess, 0);
+              redirectToAdminCategories();
             } catch (err) {
               // TODO: Add notification
               console.error(err);
@@ -39,7 +46,6 @@ CategoryCreate.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   createCategory: PropTypes.func.isRequired,
-  onSuccess: PropTypes.func.isRequired,
 };
 
 export default connect(null, {

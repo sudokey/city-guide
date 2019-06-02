@@ -2,27 +2,36 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { update as updateCategory } from '../../../../../actions/categories';
-import Category from './index';
+import CategoryForm from '../../../../CategoryForm';
 import { withLoader } from '../../../../../libs/Loader';
 import Popup, { Content as PopupContent } from '../../../../Popup';
+import Routes from '../../../../../libs/routes';
 
-const CategoryUpdate = ({ category, onSuccess, updateCategory }) => {
+const CategoryUpdate = ({
+  category, updateCategory, history,
+}) => {
   const [loading, setLoading] = useState(false);
+
+  const redirectToAdminCategories = () => {
+    setTimeout(() => {
+      history.push(Routes.getAdminCategoriesUrl());
+    }, 0);
+  };
 
   return (
     <Popup
       dark
-      onClickClose={onSuccess}
+      onClickClose={redirectToAdminCategories}
     >
       <PopupContent>
-        <Category
-          categoryData={category}
+        <CategoryForm
+          initialData={category}
           loading={loading}
           onSubmit={async (category) => {
             setLoading(true);
             try {
               await withLoader(updateCategory(category));
-              setTimeout(onSuccess, 0);
+              redirectToAdminCategories();
             } catch (err) {
               // TODO: Add notification
               console.error(err);
@@ -40,8 +49,7 @@ CategoryUpdate.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   updateCategory: PropTypes.func.isRequired,
-  category: Category.propTypes.categoryData,
-  onSuccess: PropTypes.func.isRequired,
+  category: CategoryForm.propTypes.initialData,
 };
 
 CategoryUpdate.defaultProps = {
